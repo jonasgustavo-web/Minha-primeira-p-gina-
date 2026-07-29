@@ -1,16 +1,262 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O projeto</title>
+    <title>Projeto Integrador: A Ciência da Água</title>
+    <style>
+        :root {
+            --primary: #0077b6;
+            --secondary: #00b4d8;
+            --accent: #90e0ef;
+            --bg: #f8f9fa;
+            --text: #212529;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg);
+            color: var(--text);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        nav {
+            background-color: #023e8a;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--secondary);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            background: #e0f7fa;
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .calc-box {
+            background: #eef9ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .calc-box label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .calc-box input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #023e8a;
+        }
+
+        .result {
+            margin-top: 1rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #023e8a;
+            color: white;
+            margin-top: 2rem;
+        }
+    </style>
 </head>
 <body>
+
     <header>
-        <h1>PROJETO INTEGRADOR</h1>
-        <p>SUSTENTABILIDADE</p>
-        
+        <h1>Projeto Integrador: A Ciência da Água</h1>
+        <p>Uma abordagem interdisciplinar integrando Química, Biologia e Matemática</p>
     </header>
-    
+
+    <nav>
+        <a href="#quimica">Química</a>
+        <a href="#biologia">Biologia</a>
+        <a href="#matematica">Matemática</a>
+    </nav>
+
+    <div class="container">
+
+        <section id="quimica">
+            <h2>🧪 Química da Água</h2>
+            <p>A água é uma substância química fundamental cujas propriedades moleculares determinam o comportamento do nosso planeta.</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Estrutura Molecular</h3>
+                    <p>Formada por dois átomos de hidrogênio e um de oxigênio (H₂O), unidos por ligações covalentes polares em um ângulo de 104,5°.</p>
+                </div>
+                <div class="card">
+                    <h3>Pontes de Hidrogênio</h3>
+                    <p>As atrações entre os polos positivos e negativos de moléculas vizinhas geram alta tensão superficial e elevado calor específico.</p>
+                </div>
+                <div class="card">
+                    <h3>Solvente Universal</h3>
+                    <p>Devido à sua polaridade, a água é capaz de dissolver uma ampla variedade de substâncias iônicas e polares.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="biologia">
+            <h2>🌿 Biologia e Vida Aquaticamente Dependente</h2>
+            <p>A água é a matriz da vida. Sem ela, os processos metabólicos dos seres vivos seriam impossíveis.</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Metabolismo Celular</h3>
+                    <p>A água atua no transporte de nutrientes, eliminação de resíduos e como meio onde ocorrem as reações químicas vitais.</p>
+                </div>
+                <div class="card">
+                    <h3>Fotossíntese</h3>
+                    <p>Na fotossíntese, as plantas utilizam água e dióxido de carbono para sintetizar glicose e liberar oxigênio para a atmosfera.</p>
+                </div>
+                <div class="card">
+                    <h3>Termorregulação</h3>
+                    <p>Graças ao elevado calor de vaporização, a evaporação do suor ajuda a regular a temperatura corporal dos organismos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="matematica">
+            <h2>📐 Matemática e Gestão Hídrica</h2>
+            <p>A matemática nos permite quantificar, prever e otimizar o uso da água para evitar a escassez.</p>
+            
+            <article>
+                <h3>Modelagem de Consumo</h3>
+                <p>O consumo hídrico diário $C$ em uma residência pode ser expresso pela função linear:</p>
+                <p style="text-align: center; margin: 1rem 0; font-size: 1.2rem;">$$C(t) = v \cdot t$$</p>
+                <p>Onde $v$ representa a vazão do equipamento (em litros por minuto) e $t$ o tempo de uso (em minutos).</p>
+            </article>
+
+            <div class="calc-box">
+                <h3>Calculadora de Consumo no Banho</h3>
+                <p>Calcule quantos litros de água você gasta por mês apenas no banho:</p>
+                <br>
+                <label for="tempoBanho">Tempo médio do banho (em minutos):</label>
+                <input type="number" id="tempoBanho" placeholder="Ex: 10" min="1">
+
+                <label for="vazaoChuveiro">Vazão do chuveiro (litros por minuto - média padrão: 9L):</label>
+                <input type="number" id="vazaoChuveiro" value="9" min="1">
+
+                <button onclick="calcularConsumo()">Calcular Consumo Mensal</button>
+
+                <div class="result" id="resultadoConsumo"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Projeto Integrador — Desenvolvido para Feira de Ciências e Pesquisa Escolar</p>
+    </footer>
+
+    <script>
+        function calcularConsumo() {
+            const tempo = parseFloat(document.getElementById('tempoBanho').value);
+            const vazao = parseFloat(document.getElementById('vazaoChuveiro').value);
+
+            if (isNaN(tempo) || tempo <= 0) {
+                document.getElementById('resultadoConsumo').innerText = 'Por favor, insira um tempo válido!';
+                return;
+            }
+
+            // Consumo por banho = tempo * vazao
+            // Consumo mensal (30 dias) = tempo * vazao * 30
+            const consumoDiario = tempo * vazao;
+            const consumoMensal = consumoDiario * 30;
+            const consumoM3 = (consumoMensal / 1000).toFixed(2);
+
+            document.getElementById('resultadoConsumo').innerHTML = `
+                <p>💧 Consumo diário: <strong>${consumoDiario} Litros</strong></p>
+                <p>🌊 Consumo mensal estimativo: <strong>${consumoMensal} Litros</strong> (${consumoM3} m³)</p>
+            `;
+        }
+    </script>
+
 </body>
 </html>
