@@ -1,262 +1,534 @@
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Integrador: A Ciência da Água</title>
-    <style>
-        :root {
-            --primary: #0077b6;
-            --secondary: #00b4d8;
-            --accent: #90e0ef;
-            --bg: #f8f9fa;
-            --text: #212529;
-        }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    <title>Cada Gota Conta | Projeto Integrador</title>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-color: var(--bg);
-            color: var(--text);
-        }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-        }
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        nav {
-            background-color: #023e8a;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            padding: 10px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
-
-        nav a:hover {
-            background-color: var(--secondary);
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        section {
-            background: white;
-            border-radius: 8px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        h2 {
-            color: var(--primary);
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .card {
-            background: #e0f7fa;
-            padding: 1.5rem;
-            border-radius: 6px;
-            border-left: 4px solid var(--primary);
-        }
-
-        .calc-box {
-            background: #eef9ff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-        }
-
-        .calc-box label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .calc-box input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        button:hover {
-            background-color: #023e8a;
-        }
-
-        .result {
-            margin-top: 1rem;
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: #023e8a;
-            color: white;
-            margin-top: 2rem;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
+    <!-- MENU -->
     <header>
-        <h1>Projeto Integrador: A Ciência da Água</h1>
-        <p>Uma abordagem interdisciplinar integrando Química, Biologia e Matemática</p>
+        <nav class="navbar">
+            <div class="logo">
+                💧 CADA GOTA CONTA
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#projeto">Projeto</a></li>
+                <li><a href="#ciencia">Ciência</a></li>
+                <li><a href="#dados">Dados</a></li>
+                <li><a href="#conclusao">Conclusão</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <nav>
-        <a href="#quimica">Química</a>
-        <a href="#biologia">Biologia</a>
-        <a href="#matematica">Matemática</a>
-    </nav>
+    <!-- HERO -->
+    <section id="inicio" class="hero">
 
-    <div class="container">
+        <div class="hero-content">
 
-        <section id="quimica">
-            <h2>🧪 Química da Água</h2>
-            <p>A água é uma substância química fundamental cujas propriedades moleculares determinam o comportamento do nosso planeta.</p>
-            
-            <div class="card-grid">
-                <div class="card">
-                    <h3>Estrutura Molecular</h3>
-                    <p>Formada por dois átomos de hidrogênio e um de oxigênio (H₂O), unidos por ligações covalentes polares em um ângulo de 104,5°.</p>
-                </div>
-                <div class="card">
-                    <h3>Pontes de Hidrogênio</h3>
-                    <p>As atrações entre os polos positivos e negativos de moléculas vizinhas geram alta tensão superficial e elevado calor específico.</p>
-                </div>
-                <div class="card">
-                    <h3>Solvente Universal</h3>
-                    <p>Devido à sua polaridade, a água é capaz de dissolver uma ampla variedade de substâncias iônicas e polares.</p>
-                </div>
+            <span class="tag">PROJETO INTEGRADOR</span>
+
+            <h1>
+                Cada Gota<br>
+                <span>Conta.</span>
+            </h1>
+
+            <p>
+                Uma investigação sobre a importância da água,
+                conectando Química, Matemática e Biologia
+                através de dados e ciência.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#projeto" class="btn primary">
+                    Conheça o projeto
+                </a>
+
+                <a href="#dados" class="btn secondary">
+                    Ver os dados
+                </a>
             </div>
-        </section>
 
-        <section id="biologia">
-            <h2>🌿 Biologia e Vida Aquaticamente Dependente</h2>
-            <p>A água é a matriz da vida. Sem ela, os processos metabólicos dos seres vivos seriam impossíveis.</p>
-            
-            <div class="card-grid">
-                <div class="card">
-                    <h3>Metabolismo Celular</h3>
-                    <p>A água atua no transporte de nutrientes, eliminação de resíduos e como meio onde ocorrem as reações químicas vitais.</p>
-                </div>
-                <div class="card">
-                    <h3>Fotossíntese</h3>
-                    <p>Na fotossíntese, as plantas utilizam água e dióxido de carbono para sintetizar glicose e liberar oxigênio para a atmosfera.</p>
-                </div>
-                <div class="card">
-                    <h3>Termorregulação</h3>
-                    <p>Graças ao elevado calor de vaporização, a evaporação do suor ajuda a regular a temperatura corporal dos organismos.</p>
-                </div>
+        </div>
+
+        <div class="water-animation">
+            <div class="water-circle">
+                💧
             </div>
-        </section>
+        </div>
 
-        <section id="matematica">
-            <h2>📐 Matemática e Gestão Hídrica</h2>
-            <p>A matemática nos permite quantificar, prever e otimizar o uso da água para evitar a escassez.</p>
-            
-            <article>
-                <h3>Modelagem de Consumo</h3>
-                <p>O consumo hídrico diário $C$ em uma residência pode ser expresso pela função linear:</p>
-                <p style="text-align: center; margin: 1rem 0; font-size: 1.2rem;">$$C(t) = v \cdot t$$</p>
-                <p>Onde $v$ representa a vazão do equipamento (em litros por minuto) e $t$ o tempo de uso (em minutos).</p>
-            </article>
+    </section>
 
-            <div class="calc-box">
-                <h3>Calculadora de Consumo no Banho</h3>
-                <p>Calcule quantos litros de água você gasta por mês apenas no banho:</p>
-                <br>
-                <label for="tempoBanho">Tempo médio do banho (em minutos):</label>
-                <input type="number" id="tempoBanho" placeholder="Ex: 10" min="1">
 
-                <label for="vazaoChuveiro">Vazão do chuveiro (litros por minuto - média padrão: 9L):</label>
-                <input type="number" id="vazaoChuveiro" value="9" min="1">
+    <!-- SOBRE O PROJETO -->
+    <section id="projeto" class="section">
 
-                <button onclick="calcularConsumo()">Calcular Consumo Mensal</button>
+        <div class="section-title">
 
-                <div class="result" id="resultadoConsumo"></div>
+            <span>01 — O PROJETO</span>
+
+            <h2>
+                Por que falar sobre<br>
+                <strong>água?</strong>
+            </h2>
+
+            <p>
+                A água está presente em praticamente todos os processos
+                que sustentam a vida. Ela participa de reações químicas,
+                processos biológicos e está diretamente relacionada
+                ao desenvolvimento das sociedades.
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card chemistry">
+
+                <div class="card-icon">⚗️</div>
+
+                <h3>Química</h3>
+
+                <p>
+                    Investigamos propriedades da água, pH,
+                    composição química e sua importância
+                    nas reações que acontecem no ambiente.
+                </p>
+
+                <div class="formula">
+                    H₂O
+                </div>
+
             </div>
-        </section>
 
-    </div>
 
+            <div class="card mathematics">
+
+                <div class="card-icon">📊</div>
+
+                <h3>Matemática</h3>
+
+                <p>
+                    Utilizamos porcentagens, médias,
+                    proporções e análise de dados para
+                    compreender o consumo e a distribuição
+                    da água.
+                </p>
+
+                <div class="formula">
+                    % &nbsp; • &nbsp; média &nbsp; • &nbsp; dados
+                </div>
+
+            </div>
+
+
+            <div class="card biology">
+
+                <div class="card-icon">🧬</div>
+
+                <h3>Biologia</h3>
+
+                <p>
+                    A água é essencial para as células,
+                    organismos e ecossistemas. Sem ela,
+                    a vida como conhecemos não existiria.
+                </p>
+
+                <div class="formula">
+                    Vida = Água
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CICLO DA ÁGUA -->
+    <section class="water-cycle">
+
+        <div class="cycle-text">
+
+            <span>02 — BIOLOGIA</span>
+
+            <h2>
+                A água está em<br>
+                <strong>constante movimento.</strong>
+            </h2>
+
+            <p>
+                O ciclo da água representa o movimento contínuo
+                da água na natureza. Ela passa pela atmosfera,
+                pelo solo, pelos rios, oceanos e pelos seres vivos.
+            </p>
+
+            <div class="cycle-list">
+
+                <div>
+                    <span>01</span>
+                    <p><strong>Evaporação</strong><br>
+                    A água recebe energia e passa para a atmosfera.</p>
+                </div>
+
+                <div>
+                    <span>02</span>
+                    <p><strong>Condensação</strong><br>
+                    O vapor se transforma novamente em pequenas gotas.</p>
+                </div>
+
+                <div>
+                    <span>03</span>
+                    <p><strong>Precipitação</strong><br>
+                    A água retorna à superfície como chuva.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="cycle-visual">
+
+            <div class="sun">☀️</div>
+
+            <div class="cloud">☁️</div>
+
+            <div class="rain">
+                💧 💧 💧
+            </div>
+
+            <div class="lake">
+                🌊 🌊 🌊 🌊
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUÍMICA -->
+    <section id="ciencia" class="section chemistry-section">
+
+        <div class="section-title">
+
+            <span>03 — QUÍMICA</span>
+
+            <h2>
+                Mais do que<br>
+                <strong>H₂O.</strong>
+            </h2>
+
+            <p>
+                A água possui características químicas que tornam
+                possível a existência de diversos processos naturais.
+            </p>
+
+        </div>
+
+
+        <div class="chemistry-content">
+
+            <div class="molecule">
+
+                <div class="oxygen">O</div>
+
+                <div class="bond bond-left"></div>
+                <div class="bond bond-right"></div>
+
+                <div class="hydrogen h1">H</div>
+                <div class="hydrogen h2">H</div>
+
+            </div>
+
+
+            <div class="chemistry-info">
+
+                <div class="info-box">
+                    <h3>Composição</h3>
+                    <p>
+                        Uma molécula de água é formada por
+                        dois átomos de hidrogênio e um átomo
+                        de oxigênio.
+                    </p>
+                </div>
+
+                <div class="info-box">
+                    <h3>Polaridade</h3>
+                    <p>
+                        A distribuição desigual de cargas
+                        faz da água uma molécula polar,
+                        permitindo diversas interações químicas.
+                    </p>
+                </div>
+
+                <div class="info-box">
+                    <h3>pH</h3>
+                    <p>
+                        Em condições ideais, a água pura
+                        apresenta pH próximo de 7,
+                        sendo considerada neutra.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DADOS -->
+    <section id="dados" class="data-section">
+
+        <div class="section-title light">
+
+            <span>04 — MATEMÁTICA & DADOS</span>
+
+            <h2>
+                Transformando números<br>
+                em <strong>informação.</strong>
+            </h2>
+
+            <p>
+                Os gráficos permitem visualizar padrões
+                e compreender melhor nossos hábitos de consumo.
+            </p>
+
+        </div>
+
+
+        <div class="data-dashboard">
+
+            <div class="stat-card">
+
+                <span>CONSUMO MÉDIO</span>
+
+                <strong>150 L</strong>
+
+                <small>por pessoa / dia</small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>USO DOMÉSTICO</span>
+
+                <strong>≈ 50%</strong>
+
+                <small>do consumo analisado</small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>ECONOMIA POSSÍVEL</span>
+
+                <strong>20%</strong>
+
+                <small>com hábitos conscientes</small>
+
+            </div>
+
+        </div>
+
+
+        <div class="charts">
+
+            <div class="chart-container">
+
+                <h3>Consumo de água por atividade</h3>
+
+                <canvas id="consumoChart"></canvas>
+
+            </div>
+
+
+            <div class="chart-container">
+
+                <h3>Consumo mensal estimado</h3>
+
+                <canvas id="mensalChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CALCULADORA -->
+    <section class="calculator-section">
+
+        <div class="calculator-text">
+
+            <span>05 — MATEMÁTICA</span>
+
+            <h2>
+                Quanto você<br>
+                <strong>consome?</strong>
+            </h2>
+
+            <p>
+                Faça uma estimativa simples do consumo diário
+                de água em algumas atividades.
+            </p>
+
+        </div>
+
+
+        <div class="calculator">
+
+            <label for="banho">
+                🚿 Banho — minutos
+            </label>
+
+            <input
+                type="number"
+                id="banho"
+                value="10"
+                min="0"
+            >
+
+            <label for="torneira">
+                🚰 Torneira — minutos
+            </label>
+
+            <input
+                type="number"
+                id="torneira"
+                value="5"
+                min="0"
+            >
+
+            <label for="descarga">
+                🚽 Descargas — quantidade
+            </label>
+
+            <input
+                type="number"
+                id="descarga"
+                value="5"
+                min="0"
+            >
+
+            <button onclick="calcularConsumo()">
+                CALCULAR CONSUMO
+            </button>
+
+            <div class="result">
+
+                <span>ESTIMATIVA DIÁRIA</span>
+
+                <strong id="resultado">
+                    0 L
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONSCIENTIZAÇÃO -->
+    <section class="conscious">
+
+        <div>
+
+            <span>06 — CONSCIÊNCIA</span>
+
+            <h2>
+                Pequenas atitudes.<br>
+                <strong>Grandes mudanças.</strong>
+            </h2>
+
+            <p>
+                Fechar a torneira, reduzir o tempo do banho,
+                reaproveitar água e evitar desperdícios são
+                atitudes simples que podem fazer diferença.
+            </p>
+
+        </div>
+
+
+        <div class="drops">
+
+            <div>💧</div>
+            <div>💧</div>
+            <div>💧</div>
+            <div>💧</div>
+            <div>💧</div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONCLUSÃO -->
+    <section id="conclusao" class="conclusion">
+
+        <div class="conclusion-content">
+
+            <span>CONCLUSÃO</span>
+
+            <h2>
+                Cada gota conta.
+            </h2>
+
+            <p>
+                Através da integração entre Química, Matemática
+                e Biologia, percebemos que a água não é apenas
+                um recurso natural: ela é fundamental para a
+                manutenção da vida e para o equilíbrio do planeta.
+            </p>
+
+            <p>
+                Conhecer os dados é o primeiro passo para mudar
+                nossas atitudes.
+            </p>
+
+            <div class="final-message">
+                💧 PRESERVAR A ÁGUA É PRESERVAR A VIDA.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
     <footer>
-        <p>Projeto Integrador — Desenvolvido para Feira de Ciências e Pesquisa Escolar</p>
+
+        <h3>💧 CADA GOTA CONTA</h3>
+
+        <p>
+            Projeto Integrador • Química • Matemática • Biologia
+        </p>
+
+        <p class="copyright">
+            Desenvolvido para fins educacionais.
+        </p>
+
     </footer>
 
-    <script>
-        function calcularConsumo() {
-            const tempo = parseFloat(document.getElementById('tempoBanho').value);
-            const vazao = parseFloat(document.getElementById('vazaoChuveiro').value);
 
-            if (isNaN(tempo) || tempo <= 0) {
-                document.getElementById('resultadoConsumo').innerText = 'Por favor, insira um tempo válido!';
-                return;
-            }
-
-            // Consumo por banho = tempo * vazao
-            // Consumo mensal (30 dias) = tempo * vazao * 30
-            const consumoDiario = tempo * vazao;
-            const consumoMensal = consumoDiario * 30;
-            const consumoM3 = (consumoMensal / 1000).toFixed(2);
-
-            document.getElementById('resultadoConsumo').innerHTML = `
-                <p>💧 Consumo diário: <strong>${consumoDiario} Litros</strong></p>
-                <p>🌊 Consumo mensal estimativo: <strong>${consumoMensal} Litros</strong> (${consumoM3} m³)</p>
-            `;
-        }
-    </script>
+    <script src="script.js"></script>
 
 </body>
-</html>
+</html>  
