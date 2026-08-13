@@ -1,642 +1,259 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conexão H₂O — Ciência & Economia de Água</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Chart.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- FontAwesome Icons CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Consumo Consciente de Água | Projeto Acadêmico</title>
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Chart.js para o gráfico -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --primary: #0077b6;
+      --secondary: #00b4d8;
+      --accent: #90e0ef;
+      --bg-light: #f8f9fa;
+      --text-dark: #2b2d42;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: var(--text-dark);
+      background-color: var(--bg-light);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--white);
+      padding: 60px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border-top: 5px solid var(--primary);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    .card ul {
+      list-style-type: none;
+    }
+
+    .card ul li {
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .card ul li::before {
+      content: "💧";
+      position: absolute;
+      left: 0;
+      font-size: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      text-align: center;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 30px;
+    }
+
+    .chart-container {
+      background: var(--white);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 50px;
+    }
+
+    .impact-box {
+      background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .impact-box h3 {
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    footer {
+      background-color: var(--text-dark);
+      color: var(--white);
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Uso Consciente da Água</h1>
+    <p>Estratégias práticas, dados estatísticos e soluções sustentáveis para a preservação do recurso hídrico.</p>
+  </header>
+
+  <div class="container">
+
+    <!-- Seção dos 3 Pilares de Dicas -->
+    <h2 class="section-title">Dicas Práticas para o Dia a Dia</h2>
+    
+    <div class="grid-3">
+      <!-- Pilar 1 -->
+      <div class="card">
+        <h3>1. No Banheiro</h3>
+        <ul>
+          <li><strong>Redução no banho:</strong> Diminuir o tempo de banho de 15 para 5 minutos economiza até 90 litros de água.</li>
+          <li><strong>Fechamento de torneiras:</strong> Desligue a torneira ao escovar os dentes ou se barbear (economia de até 12 litros por uso).</li>
+          <li><strong>Descargas conscientes:</strong> Mantenha a manutenção das válvulas de descarga em dia para evitar vazamentos invisíveis.</li>
+        </ul>
+      </div>
+
+      <!-- Pilar 2 -->
+      <div class="card">
+        <h3>2. Na Cozinha e Lavanderia</h3>
+        <ul>
+          <li><strong>Ensoapamento inteligente:</strong> Ensoapados todos os pratos antes de abrir a torneira para o enxágue.</li>
+          <li><strong>Capacidade máxima:</strong> Utilize as máquinas de lavar louça e roupa apenas quando estiverem totalmente cheias.</li>
+          <li><strong>Reutilização de água:</strong> Aproveite a água do enxágue da máquina para lavar quintais e calçadas.</li>
+        </ul>
+      </div>
+
+      <!-- Pilar 3 -->
+      <div class="card">
+        <h3>3. Manutenção e Jardim</h3>
+        <ul>
+          <li><strong>Verificação de vazamentos:</strong> Um gotejamento simples pode desperdiçar mais de 46 litros de água por dia.</li>
+          <li><strong>Rega eficiente:</strong> Regue as plantas no início da manhã ou final da tarde para evitar a evaporação rápida.</li>
+          <li><strong>Uso do balde:</strong> Substitua a mangueira por balde ao lavar o carro (economia superior a 200 litros).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Seção do Gráfico -->
+    <div class="chart-container">
+      <h2 class="section-title">Comparativo de Consumo (Em Litros)</h2>
+      <canvas id="waterChart" width="400" height="180"></canvas>
+    </div>
+
+    <!-- Quadro de Impacto Educacional -->
+    <div class="impact-box">
+      <h3>Por que este tema é crucial?</h3>
+      <p>Apenas <strong>0,3%</strong> de toda a água do planeta Terra está disponível e acessível para o consumo humano. Pequenas mudanças de hábitos individuais reduzem significativamente a pegada hídrica e garantem a sustentabilidade para as futuras gerações.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Apresentação Escolar | Consumo Consciente de Água &copy; 2026</p>
+  </footer>
+
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+    // Configuração do Gráfico de Comparação
+    const ctx = document.getElementById('waterChart').getContext('2d');
+    const waterChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [
+          'Banho (15 min vs 5 min)', 
+          'Escovar Dentes (Aberta vs Fechada)', 
+          'Lavar Louça (Contínua vs Com Pausa)', 
+          'Lavar Carro (Mangueira vs Balde)'
+        ],
+        datasets: [
+          {
+            label: 'Consumo Tradicional (Litros)',
+            data: [135, 12, 117, 216],
+            backgroundColor: 'rgba(230, 57, 70, 0.7)',
+            borderColor: 'rgba(230, 57, 70, 1)',
+            borderWidth: 1
           },
-          colors: {
-            brand: {
-              50: '#eff6ff',
-              100: '#dbeafe',
-              200: '#bfdbfe',
-              300: '#93c5fd',
-              400: '#60a5fa',
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8',
-              800: '#1e40af',
-              900: '#1e3a8a',
-              950: '#172554',
+          {
+            label: 'Consumo Consciente (Litros)',
+            data: [45, 0.5, 20, 40],
+            backgroundColor: 'rgba(42, 157, 143, 0.7)',
+            borderColor: 'rgba(42, 157, 143, 1)',
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Impacto da Mudança de Hábitos no Consumo Diário de Água'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Litros Gastos'
             }
           }
         }
       }
-    }
-  </script>
-  <style>
-    body {
-      background-color: #000000;
-      color: #ffffff;
-    }
-    .glass-card {
-      background: rgba(18, 18, 20, 0.85);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(59, 130, 246, 0.2);
-    }
-    .glass-card:hover {
-      border-color: rgba(59, 130, 246, 0.6);
-      box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
-    }
-    .gradient-text {
-      background: linear-gradient(135deg, #ffffff 0%, #93c5fd 50%, #3b82f6 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-  </style>
-</head>
-<body class="font-sans antialiased bg-black text-white selection:bg-blue-600 selection:text-white">
-
-  <!-- Navbar -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-zinc-800/80 px-6 py-4">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <a href="#" class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400">
-          <i class="fa-solid font-bold text-xl fa-droplet"></i>
-        </div>
-        <span class="text-xl font-extrabold tracking-tight text-white">Conexão<span class="text-blue-500">H₂O</span></span>
-      </a>
-      
-      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-        <a href="#ciencia" class="hover:text-blue-400 transition">Ciência</a>
-        <a href="#calculadora" class="hover:text-blue-400 transition">Calculadora</a>
-        <a href="#dados" class="hover:text-blue-400 transition">Gráficos & Dados</a>
-        <a href="#dicas" class="hover:text-blue-400 transition">Dicas de Economia</a>
-        <a href="#simulador" class="hover:text-blue-400 transition">Simulador</a>
-      </div>
-
-      <a href="#calculadora" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs md:text-sm px-5 py-2.5 rounded-xl transition shadow-lg shadow-blue-600/30">
-        Começar Agora
-      </a>
-    </div>
-  </nav>
-
-  <!-- Hero Section com Imagem HD e Overlay Escuro -->
-  <header class="relative pt-32 pb-24 px-6 min-h-[90vh] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=2000&q=80" alt="Água e Natureza" class="w-full h-full object-cover opacity-25 filter contrast-125">
-      <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/90 to-black"></div>
-      <div class="absolute -top-40 -left-40 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"></div>
-      <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-    </div>
-
-    <div class="relative z-10 max-w-4xl mx-auto text-center space-y-8">
-      <div class="inline-flex items-center gap-2 bg-blue-950/80 border border-blue-500/30 px-4 py-2 rounded-full text-xs md:text-sm text-blue-400 font-semibold tracking-wide">
-        <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-        Plataforma Interativa de Conscientização
-      </div>
-
-      <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-tight gradient-text">
-        Ciência, Tecnologia e Preservação da Água
-      </h1>
-
-      <p class="text-base sm:text-xl text-zinc-300 max-w-2xl mx-auto font-light leading-relaxed">
-        Descubra como a <strong class="text-blue-400 font-semibold">Química</strong>, a <strong class="text-blue-400 font-semibold">Biologia</strong> e a <strong class="text-blue-400 font-semibold">Matemática</strong> se unificam para explicar a importância vital do recurso mais precioso do planeta.
-      </p>
-
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-        <a href="#calculadora" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-4 rounded-xl transition duration-300 shadow-xl shadow-blue-600/30 flex items-center justify-center gap-3">
-          <i class="fa-solid fa-calculator"></i>
-          Calcular Meu Consumo Biológico
-        </a>
-        <a href="#dicas" class="w-full sm:w-auto bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-700 font-bold px-8 py-4 rounded-xl transition duration-300 flex items-center justify-center gap-3">
-          <i class="fa-solid fa-lightbulb text-blue-400"></i>
-          Ver Dicas de Economia
-        </a>
-      </div>
-
-      <!-- Métricas Rápidas -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-12 border-t border-zinc-800/80 text-left">
-        <div class="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/60">
-          <p class="text-xs text-zinc-400 uppercase font-medium">Água Doce do Globo</p>
-          <p class="text-2xl font-extrabold text-blue-400">2,5%</p>
-        </div>
-        <div class="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/60">
-          <p class="text-xs text-zinc-400 uppercase font-medium">Corpo Humano (Água)</p>
-          <p class="text-2xl font-extrabold text-blue-400">~65%</p>
-        </div>
-        <div class="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/60">
-          <p class="text-xs text-zinc-400 uppercase font-medium">Desperdício por Pingue</p>
-          <p class="text-2xl font-extrabold text-blue-400">30L/dia</p>
-        </div>
-        <div class="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800/60">
-          <p class="text-xs text-zinc-400 uppercase font-medium">Meta diária biológica</p>
-          <p class="text-2xl font-extrabold text-blue-400">35 ml/kg</p>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main class="max-w-7xl mx-auto px-6 py-16 space-y-28">
-
-    <!-- Seção Química, Biologia e Matemática com Imagens -->
-    <section id="ciencia" class="space-y-12">
-      <div class="text-center space-y-4">
-        <span class="text-blue-500 font-bold uppercase tracking-widest text-xs">Visão Multidisciplinar</span>
-        <h2 class="text-3xl md:text-5xl font-extrabold text-white">A Ciência Por Trás da Água</h2>
-        <p class="text-zinc-400 max-w-2xl mx-auto text-sm md:text-base">
-          A sustentabilidade começa com a compreensão profunda de como as ciências exatas e naturais explicam a importância da água.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <!-- Química -->
-        <div class="glass-card rounded-2xl overflow-hidden transition duration-300 flex flex-col group">
-          <div class="relative h-48 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80" alt="Química da Água" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 filter brightness-90">
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"></div>
-            <div class="absolute bottom-3 left-4 bg-blue-600/90 text-white text-xs font-bold px-3 py-1 rounded-lg">
-              <i class="fa-solid fa-flask mr-1"></i> Química
-            </div>
-          </div>
-          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-            <div>
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition">A Molécula Vital (H₂O)</h3>
-              <p class="text-zinc-400 text-sm leading-relaxed">
-                A polaridade da molécula de água permite a formação de <strong class="text-zinc-200">pontes de hidrogênio</strong>. Isso concede à água um elevado calor específico, capacidade de dissolver inúmeros compostos (solvente universal) e uma tensão superficial única.
-              </p>
-            </div>
-            <div class="bg-black/60 p-4 rounded-xl border border-zinc-800 text-xs font-mono text-blue-300 space-y-1">
-              <div>• Geometria: Angular (104,5°)</div>
-              <div>• Ligação: Covalente Polar</div>
-              <div>• pH Puro: 7.0 (Neutro)</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Biologia -->
-        <div class="glass-card rounded-2xl overflow-hidden transition duration-300 flex flex-col group">
-          <div class="relative h-48 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="Biologia e Vida" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 filter brightness-90">
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"></div>
-            <div class="absolute bottom-3 left-4 bg-blue-600/90 text-white text-xs font-bold px-3 py-1 rounded-lg">
-              <i class="fa-solid fa-dna mr-1"></i> Biologia
-            </div>
-          </div>
-          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-            <div>
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition">A Base do Metabolismo</h3>
-              <p class="text-zinc-400 text-sm leading-relaxed">
-                Em seres vivos, a água atua no transporte celular de íons e gases, na homeostase térmica (suor e transpiração foliar) e como reagente fundamental na <strong class="text-zinc-200">fotossíntese</strong> e respiração celular.
-              </p>
-            </div>
-            <div class="bg-black/60 p-4 rounded-xl border border-zinc-800 text-xs font-mono text-blue-300 space-y-1">
-              <div>• % do Sangue Humano: ~92% água</div>
-              <div>• Sobrevivência Sem Água: 3 a 5 dias</div>
-              <div>• Papel: Osmorregulação Célula</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Matemática -->
-        <div class="glass-card rounded-2xl overflow-hidden transition duration-300 flex flex-col group">
-          <div class="relative h-48 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=800&q=80" alt="Matemática da Escassez" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 filter brightness-90">
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"></div>
-            <div class="absolute bottom-3 left-4 bg-blue-600/90 text-white text-xs font-bold px-3 py-1 rounded-lg">
-              <i class="fa-solid fa-calculator mr-1"></i> Matemática
-            </div>
-          </div>
-          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-            <div>
-              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition">A Matemática da Escassez</h3>
-              <p class="text-zinc-400 text-sm leading-relaxed">
-                Dos 1,386 bilhão de km³ de água no mundo, apenas 0,007% está disponível para consumo direto humano. Equações de fluxo mostram que pequenos gotejamentos geram perdas volumétricas exponenciais.
-              </p>
-            </div>
-            <div class="bg-black/60 p-4 rounded-xl border border-zinc-800 text-xs font-mono text-blue-300 space-y-1">
-              <div>• Total Água Doce Acessível: <1%</div>
-              <div>• 1 gota/segundo = 30 L/dia = 900 L/mês</div>
-              <div>• Fator de Crescimento de Perda: Linear</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Calculadora Interativa -->
-    <section id="calculadora" class="relative rounded-3xl p-8 md:p-12 overflow-hidden border border-blue-900/50 bg-gradient-to-b from-zinc-900 to-black">
-      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl"></div>
-      
-      <div class="relative z-10 max-w-3xl mx-auto space-y-8 text-center">
-        <div class="inline-flex items-center gap-2 bg-blue-900/40 border border-blue-500/30 text-blue-400 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">
-          <i class="fa-solid fa-square-root-variable"></i> Algoritmo Biológico & Bioquímico
-        </div>
-
-        <h2 class="text-3xl md:text-4xl font-extrabold text-white">Calculadora Personalizada de Hidratação</h2>
-        <p class="text-zinc-400 text-sm md:text-base">
-          Calcule exatamente quantos litros de água o seu organismo necessita diariamente com base no seu peso e nível de atividade física.
-        </p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left pt-4">
-          <div class="space-y-2">
-            <label class="text-xs font-semibold text-zinc-300 uppercase">Seu Peso Corporal (kg)</label>
-            <div class="relative">
-              <input type="number" id="pesoInput" placeholder="Ex: 70" class="w-full bg-black border border-zinc-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
-              <span class="absolute right-4 top-3.5 text-zinc-500 text-sm font-semibold">kg</span>
-            </div>
-          </div>
-
-          <div class="space-y-2">
-            <label class="text-xs font-semibold text-zinc-300 uppercase">Nível de Atividade Física</label>
-            <select id="atividadeInput" class="w-full bg-black border border-zinc-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
-              <option value="1.0">Sedentário (pouco ou nenhum exercício)</option>
-              <option value="1.2">Moderado (exercício leve a médio)</option>
-              <option value="1.4">Intenso (atleta ou trabalho braçal)</option>
-            </select>
-          </div>
-        </div>
-
-        <button onclick="calcularConsumoBiologico()" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold px-10 py-4 rounded-xl transition duration-300 shadow-lg shadow-blue-600/30">
-          <i class="fa-solid fa-calculator mr-2"></i> Calcular Minha Meta Diária
-        </button>
-
-        <div id="resultadoCalc" class="hidden text-left bg-zinc-950 border border-blue-500/40 p-6 rounded-2xl space-y-4">
-          <div class="flex items-center gap-3 border-b border-zinc-800 pb-3">
-            <div class="w-8 h-8 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center font-bold">
-              <i class="fa-solid fa-check"></i>
-            </div>
-            <h4 class="font-bold text-white text-lg">Resultado do Cálculo Bioquímico</h4>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-            <div class="bg-black/60 p-4 rounded-xl border border-zinc-800">
-              <p class="text-xs text-zinc-400">Meta Recomendada</p>
-              <p id="litrosResultado" class="text-2xl font-black text-blue-400">0.0 L</p>
-              <p class="text-[10px] text-zinc-500 mt-1">Por dia</p>
-            </div>
-            <div class="bg-black/60 p-4 rounded-xl border border-zinc-800">
-              <p class="text-xs text-zinc-400">Em Copos (250ml)</p>
-              <p id="coposResultado" class="text-2xl font-black text-white">0 copos</p>
-              <p class="text-[10px] text-zinc-500 mt-1">Distribuídos ao dia</p>
-            </div>
-            <div class="bg-black/60 p-4 rounded-xl border border-zinc-800">
-              <p class="text-xs text-zinc-400">Consumo Mensal Estimado</p>
-              <p id="mensalResultado" class="text-2xl font-black text-blue-400">0 L</p>
-              <p class="text-[10px] text-zinc-500 mt-1">Por mês</p>
-            </div>
-          </div>
-          
-          <p id="dicaBioResultado" class="text-xs text-zinc-400 italic pt-2 border-t border-zinc-800/60"></p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Gráficos e Tabelas de Consumo -->
-    <section id="dados" class="space-y-12">
-      <div class="text-center space-y-4">
-        <span class="text-blue-500 font-bold uppercase tracking-widest text-xs">Análise de Dados</span>
-        <h2 class="text-3xl md:text-5xl font-extrabold text-white">Gráficos & Tabela de Impacto</h2>
-        <p class="text-zinc-400 max-w-2xl mx-auto text-sm md:text-base">
-          Visualização matemática da distribuição do uso da água e o potencial de economia por troca de hábito.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-        
-        <!-- Gráfico em Fundo Preto -->
-        <div class="glass-card p-6 md:p-8 rounded-2xl flex flex-col justify-between space-y-6">
-          <div class="flex justify-between items-center border-b border-zinc-800 pb-4">
-            <h3 class="font-bold text-white text-lg flex items-center gap-2">
-              <i class="fa-solid fa-chart-pie text-blue-500"></i> Onde Gastamos Água em Casa?
-            </h3>
-            <span class="text-xs text-zinc-400 bg-zinc-900 px-3 py-1 rounded-full border border-zinc-800">Média Residencial</span>
-          </div>
-          <div class="relative h-72 w-full flex items-center justify-center">
-            <canvas id="graficoConsumo"></canvas>
-          </div>
-          <p class="text-xs text-zinc-500 text-center">
-            *Dados baseados em pesquisas de consumo médio diário em áreas urbanas.
-          </p>
-        </div>
-
-        <!-- Tabela Comparativa -->
-        <div class="glass-card p-6 md:p-8 rounded-2xl flex flex-col justify-between space-y-6">
-          <div class="flex justify-between items-center border-b border-zinc-800 pb-4">
-            <h3 class="font-bold text-white text-lg flex items-center gap-2">
-              <i class="fa-solid fa-table text-blue-500"></i> Hábito Comum vs. Hábito Consciente
-            </h3>
-            <span class="text-xs text-blue-400 font-semibold bg-blue-950/80 px-3 py-1 rounded-full border border-blue-500/30">Redução Relevante</span>
-          </div>
-
-          <div class="overflow-x-auto">
-            <table class="w-full text-sm text-left">
-              <thead>
-                <tr class="border-b border-zinc-800 text-xs uppercase text-blue-400 bg-zinc-900/60">
-                  <th class="py-3 px-4 rounded-l-xl">Ação Diária</th>
-                  <th class="py-3 px-4">Sem Cuidado</th>
-                  <th class="py-3 px-4">Com Cuidado</th>
-                  <th class="py-3 px-4 rounded-r-xl text-right">Economia/Dia</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-zinc-800/60 text-zinc-300">
-                <tr class="hover:bg-zinc-900/40 transition">
-                  <td class="py-3 px-4 font-semibold text-white">Banho de Chuveiro</td>
-                  <td class="py-3 px-4 text-zinc-400">15 min (135 L)</td>
-                  <td class="py-3 px-4 text-blue-300">5 min (45 L)</td>
-                  <td class="py-3 px-4 text-right font-bold text-blue-400">90 Litros</td>
-                </tr>
-                <tr class="hover:bg-zinc-900/40 transition">
-                  <td class="py-3 px-4 font-semibold text-white">Escovar os Dentes</td>
-                  <td class="py-3 px-4 text-zinc-400">Torneira (12 L)</td>
-                  <td class="py-3 px-4 text-blue-300">Copo (0,5 L)</td>
-                  <td class="py-3 px-4 text-right font-bold text-blue-400">11,5 Litros</td>
-                </tr>
-                <tr class="hover:bg-zinc-900/40 transition">
-                  <td class="py-3 px-4 font-semibold text-white">Lavar Louça</td>
-                  <td class="py-3 px-4 text-zinc-400">Aberta (240 L)</td>
-                  <td class="py-3 px-4 text-blue-300">Enaboar e Enxaguar (60 L)</td>
-                  <td class="py-3 px-4 text-right font-bold text-blue-400">180 Litros</td>
-                </tr>
-                <tr class="hover:bg-zinc-900/40 transition">
-                  <td class="py-3 px-4 font-semibold text-white">Lavar Calçada</td>
-                  <td class="py-3 px-4 text-zinc-400">Mangueira (280 L)</td>
-                  <td class="py-3 px-4 text-blue-300">Vassoura e Balde (40 L)</td>
-                  <td class="py-3 px-4 text-right font-bold text-blue-400">240 Litros</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="bg-blue-950/40 border border-blue-500/30 p-4 rounded-xl text-xs text-blue-300 flex items-center gap-3">
-            <i class="fa-solid fa-circle-info text-lg text-blue-400"></i>
-            <div>Adotando todas as ações acima, uma única pessoa economiza mais de <strong class="text-white">15.000 litros de água por mês!</strong></div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Galeria de Dicas de Economia de Água com Imagens HD -->
-    <section id="dicas" class="space-y-12">
-      <div class="text-center space-y-4">
-        <span class="text-blue-500 font-bold uppercase tracking-widest text-xs">Guia Prático</span>
-        <h2 class="text-3xl md:text-5xl font-extrabold text-white">Dicas para Economizar Água</h2>
-        <p class="text-zinc-400 max-w-2xl mx-auto text-sm md:text-base">
-          Ações simples no seu dia a dia que resultam em grande impacto ecológico e financeiro.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        
-        <!-- Dica 1 -->
-        <div class="glass-card rounded-2xl overflow-hidden transition group">
-          <div class="h-48 relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" alt="Banho Rápido" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 filter brightness-90">
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent"></div>
-            <div class="absolute top-3 right-3 bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">1</div>
-          </div>
-          <div class="p-6 space-y-3">
-            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition">Banhos de 5 Minutos</h3>
-            <p class="text-zinc-400 text-sm leading-relaxed">
-              Feche o chuveiro enquanto se ensaboa ou passa xampu. Cada minuto a menos no banho economiza cerca de 9 a 12 litros de água potável.
-            </p>
-          </div>
-        </div>
-
-        <!-- Dica 2 -->
-        <div class="glass-card rounded-2xl overflow-hidden transition group">
-          <div class="h-48 relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?auto=format&fit=crop&w=800&q=80" alt="Captação da Chuva" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 filter brightness-90">
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent"></div>
-            <div class="absolute top-3 right-3 bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">2</div>
-          </div>
-          <div class="p-6 space-y-3">
-            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition">Cisternas e Água da Chuva</h3>
-            <p class="text-zinc-400 text-sm leading-relaxed">
-              Instale um sistema simples de calhas para reutilizar a água da chuva na irrigação de plantas, lavagem de pisos e nas descargas do banheiro.
-            </p>
-          </div>
-        </div>
-
-        <!-- Dica 3 -->
-        <div class="glass-card rounded-2xl overflow-hidden transition group">
-          <div class="h-48 relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=800&q=80" alt="Vazamentos" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 filter brightness-90">
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent"></div>
-            <div class="absolute top-3 right-3 bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">3</div>
-          </div>
-          <div class="p-6 space-y-3">
-            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition">Checagem de Vazamentos</h3>
-            <p class="text-zinc-400 text-sm leading-relaxed">
-              Verifique regularmente torneiras, descargas e hidrômetros. Um vazamento silencioso no vaso sanitário pode desperdiçar até 400 litros por dia.
-            </p>
-          </div>
-        </div>
-
-        <!-- Dica 4 -->
-        <div class="glass-card rounded-2xl overflow-hidden transition group">
-          <div class="h-48 relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=800&q=80" alt="Máquina de Lavar" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 filter brightness-90">
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent"></div>
-            <div class="absolute top-3 right-3 bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">4</div>
-          </div>
-          <div class="p-6 space-y-3">
-            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition">Máquinas com Carga Cheia</h3>
-            <p class="text-zinc-400 text-sm leading-relaxed">
-              Acione a máquina de lavar roupas e a de lavar louças apenas quando estiverem na capacidade máxima e reutilize a água do enxágue para a limpeza de quintais.
-            </p>
-          </div>
-        </div>
-
-        <!-- Dica 5 -->
-        <div class="glass-card rounded-2xl overflow-hidden transition group">
-          <div class="h-48 relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1508873696983-2df515122519?auto=format&fit=crop&w=800&q=80" alt="Torneira Fechada" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 filter brightness-90">
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent"></div>
-            <div class="absolute top-3 right-3 bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">5</div>
-          </div>
-          <div class="p-6 space-y-3">
-            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition">Arejadores de Torneira</h3>
-            <p class="text-zinc-400 text-sm leading-relaxed">
-              Instale arejadores nas torneiras da cozinha e banheiro. Eles misturam ar à água, reduzindo o fluxo em até 50% sem perder a sensação de pressão.
-            </p>
-          </div>
-        </div>
-
-        <!-- Dica 6 -->
-        <div class="glass-card rounded-2xl overflow-hidden transition group">
-          <div class="h-48 relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80" alt="Jardim Inteligente" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 filter brightness-90">
-            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent"></div>
-            <div class="absolute top-3 right-3 bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">6</div>
-          </div>
-          <div class="p-6 space-y-3">
-            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition">Rega nos Horários Certos</h3>
-            <p class="text-zinc-400 text-sm leading-relaxed">
-              Regue as plantas no início da manhã ou no fim da tarde. Isso reduz drasticamente a taxa de evaporação acelerada provocada pelo sol forte.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Simulador Financeiro e de Volume para Famílias -->
-    <section id="simulador" class="glass-card rounded-3xl p-8 md:p-12 border border-blue-600/30">
-      <div class="max-w-3xl mx-auto text-center space-y-8">
-        <span class="text-blue-500 font-bold uppercase tracking-widest text-xs">Simulador Matemático</span>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-white">Quanto Sua Família Pode Economizar?</h2>
-        <p class="text-zinc-400 text-sm md:text-base">
-          Ajuste o número de moradores da sua casa para ver a economia potencial de litros e de dinheiro na conta ao longo do ano.
-        </p>
-
-        <div class="bg-black/60 p-6 rounded-2xl border border-zinc-800 space-y-6 text-left">
-          <div>
-            <div class="flex justify-between items-center mb-2">
-              <label class="text-sm font-semibold text-zinc-300">Número de Pessoas na Casa:</label>
-              <span id="pessonasVal" class="text-xl font-bold text-blue-400">3 Pessoas</span>
-            </div>
-            <input type="range" id="pessoasSlider" min="1" max="10" value="3" oninput="atualizarSimulador()" class="w-full accent-blue-600 cursor-pointer">
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-zinc-800">
-            <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800">
-              <p class="text-xs text-zinc-400 uppercase font-medium">Economia de Água Estimada</p>
-              <p id="litrosEconomiaSim" class="text-3xl font-extrabold text-blue-400 mt-1">16.200 L</p>
-              <p class="text-xs text-zinc-500 mt-1">por mês para a família</p>
-            </div>
-            <div class="bg-zinc-900/80 p-5 rounded-xl border border-zinc-800">
-              <p class="text-xs text-zinc-400 uppercase font-medium">Economia Financeira Anual</p>
-              <p id="reaisEconomiaSim" class="text-3xl font-extrabold text-green-400 mt-1">R$ 1.458</p>
-              <p class="text-xs text-zinc-500 mt-1">estimativa na conta de água/ano</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer em Preto Fundo -->
-  <footer class="bg-black border-t border-zinc-800 text-zinc-500 py-12 px-6">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-      <div class="space-y-2">
-        <a href="#" class="flex items-center justify-center md:justify-start gap-2 text-white font-extrabold text-lg">
-          <i class="fa-solid fa-droplet text-blue-500"></i> Conexão<span class="text-blue-500">H₂O</span>
-        </a>
-        <p class="text-xs text-zinc-400">Projeto Educação Ambiental & Ciência Multidisciplinar</p>
-      </div>
-
-      <div class="flex items-center gap-6 text-zinc-400 text-sm">
-        <a href="#ciencia" class="hover:text-blue-400 transition">Química</a>
-        <a href="#ciencia" class="hover:text-blue-400 transition">Biologia</a>
-        <a href="#ciencia" class="hover:text-blue-400 transition">Matemática</a>
-        <a href="#dicas" class="hover:text-blue-400 transition">Economia</a>
-      </div>
-
-      <p class="text-xs text-zinc-600">
-        Pronto para ser publicado via <strong class="text-zinc-400">GitHub Pages</strong> & <strong class="text-zinc-400">VS Code</strong>.
-      </p>
-    </div>
-  </footer>
-
-  <!-- Scripts JS -->
-  <script>
-    // Calculadora Biológica
-    function calcularConsumoBiologico() {
-      const peso = parseFloat(document.getElementById('pesoInput').value);
-      const fatorAtividade = parseFloat(document.getElementById('atividadeInput').value);
-      const divResultado = document.getElementById('resultadoCalc');
-
-      if (isNaN(peso) || peso <= 0) {
-        alert("Por favor, digite um peso válido!");
-        return;
-      }
-
-      const consumoMl = peso * 35 * fatorAtividade;
-      const consumoLitros = consumoMl / 1000;
-      const copos = Math.round(consumoMl / 250);
-      const consumoMensal = consumoLitros * 30;
-
-      document.getElementById('litrosResultado').innerText = consumoLitros.toFixed(2) + " L";
-      document.getElementById('coposResultado').innerText = copos + " copos";
-      document.getElementById('mensalResultado').innerText = Math.round(consumoMensal) + " L";
-      
-      document.getElementById('dicaBioResultado').innerText = `Nota Bioquímica: Em dias de calor intenso ou febre, adicione +500ml para repor o suor e a transpiração fisiológica.`;
-
-      divResultado.classList.remove('hidden');
-    }
-
-    // Gráfico Chart.js Dark & Azul
-    const ctx = document.getElementById('graficoConsumo').getContext('2d');
-    new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: ['Banhos (35%)', 'Bacias Sanitárias (25%)', 'Torneiras e Louça (20%)', 'Lavagem de Roupas (12%)', 'Outros/Jardim (8%)'],
-        datasets: [{
-          data: [35, 25, 20, 12, 8],
-          backgroundColor: [
-            '#2563eb', // blue-600
-            '#3b82f6', // blue-500
-            '#60a5fa', // blue-400
-            '#93c5fd', // blue-300
-            '#1e3a8a'  // blue-900
-          ],
-          borderColor: '#000000',
-          borderWidth: 3
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'bottom',
-            labels: {
-              color: '#a1a1aa',
-              font: {
-                family: 'Plus Jakarta Sans',
-                size: 11
-              },
-              padding: 15
-            }
-          },
-          tooltip: {
-            backgroundColor: '#18181b',
-            titleColor: '#ffffff',
-            bodyColor: '#60a5fa',
-            borderColor: '#27272a',
-            borderWidth: 1
-          }
-        },
-        cutout: '65%'
-      }
     });
-
-    // Simulador Financeiro & Volume
-    function atualizarSimulador() {
-      const pessoas = parseInt(document.getElementById('pessoasSlider').value);
-      document.getElementById('pessonasVal').innerText = pessoas + (pessoas === 1 ? " Pessoa" : " Pessoas");
-
-      const litrosEconomizadosMes = pessoas * 180 * 30;
-      const reaisEconomizadosAno = (litrosEconomizadosMes * 12 / 1000) * 7.5;
-
-      document.getElementById('litrosEconomiaSim').innerText = litrosEconomizadosMes.toLocaleString('pt-BR') + " L";
-      document.getElementById('reaisEconomiaSim').innerText = "R$ " + Math.round(reaisEconomizadosAno).toLocaleString('pt-BR');
-    }
-
-    atualizarSimulador();
   </script>
+
 </body>
 </html>
