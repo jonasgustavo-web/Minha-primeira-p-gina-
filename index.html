@@ -3,16 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EcoÁgua: Ciência, Matemática e Sustentabilidade</title>
+  <title>EcoÁgua: Guia Completo & Dicas de Consumo Consciente</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root {
+      --primary-dark: #03045e;
       --primary: #0077b6;
       --secondary: #00b4d8;
       --accent: #90e0ef;
-      --bg: #f8f9fa;
-      --text: #2b2d42;
+      --light-bg: #f8f9fa;
       --card-bg: #ffffff;
+      --text: #2d3142;
+      --success: #2a9d8f;
+      --warning: #e76f51;
     }
 
     * {
@@ -23,280 +26,476 @@
     }
 
     body {
-      background-color: var(--bg);
+      background-color: var(--light-bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary), var(--secondary));
       color: white;
       text-align: center;
-      padding: 2.5rem 1rem;
+      padding: 3.5rem 1.5rem;
     }
 
     header h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
+      font-size: 2.6rem;
+      margin-bottom: 0.8rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.95;
     }
 
     nav {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 15px;
-      background: #023e8a;
-      padding: 10px;
+      background: var(--primary-dark);
+      padding: 12px 10px;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      font-weight: bold;
-      font-size: 0.9rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background 0.2s;
     }
 
     nav a:hover {
-      text-decoration: underline;
+      background: rgba(255,255,255,0.2);
     }
 
     .container {
-      max-width: 1000px;
-      margin: 20px auto;
-      padding: 0 15px;
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
     }
 
     section {
       background: var(--card-bg);
-      border-radius: 10px;
-      padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
     h2 {
-      color: var(--primary);
-      margin-bottom: 15px;
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 5px;
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 8px;
     }
 
-    .grid {
+    h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .grid-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
-      margin-top: 15px;
+      margin-top: 20px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
     }
 
     .card {
-      background: #edf6f9;
-      padding: 15px;
-      border-radius: 8px;
-      border-left: 4px solid var(--secondary);
+      background: #f0f8ff;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 5px solid var(--secondary);
     }
 
-    /* Form & Quiz Styles */
+    .tip-card {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    }
+
+    .tip-card h4 {
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge {
+      background: var(--success);
+      color: white;
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-weight: bold;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
     label {
       display: block;
-      margin: 10px 0 5px;
-      font-weight: bold;
+      margin-bottom: 5px;
+      font-weight: 600;
     }
 
     input[type="number"], select {
       width: 100%;
-      padding: 8px;
+      padding: 10px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 6px;
+      font-size: 1rem;
     }
 
     button {
       background: var(--primary);
       color: white;
       border: none;
-      padding: 10px 20px;
-      margin-top: 15px;
-      border-radius: 5px;
+      padding: 12px 24px;
+      border-radius: 6px;
       cursor: pointer;
       font-size: 1rem;
+      font-weight: bold;
+      transition: background 0.3s;
     }
 
     button:hover {
-      background: #023e8a;
+      background: var(--primary-dark);
     }
 
-    .result {
-      margin-top: 15px;
-      font-weight: bold;
-      color: var(--primary);
-      padding: 10px;
-      background: #e0f7fa;
-      border-radius: 5px;
+    .result-box {
+      margin-top: 20px;
+      padding: 20px;
+      background: #e8f8f5;
+      border-left: 5px solid var(--success);
+      border-radius: 6px;
+    }
+
+    .quiz-question {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
     }
 
     .quiz-option {
       margin: 8px 0;
+      cursor: pointer;
+    }
+
+    .quiz-option input {
+      margin-right: 8px;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      background: var(--primary);
+      padding: 25px;
+      background: var(--primary-dark);
       color: white;
-      margin-top: 40px;
+      margin-top: 50px;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Uso Racional da Água & Limites Planetários</h1>
-    <p>Uma abordagem integrada entre Química, Biologia e Matemática</p>
+    <h1>Dicas de Consumo Racional de Água</h1>
+    <p>Aprenda a economizar água integrando Matemática, Química, Biologia e Limites Planetários para um futuro sustentável.</p>
   </header>
 
   <nav>
-    <a href="#ciencia">Ciência da Água</a>
+    <a href="#dicas">Dicas de Consumo</a>
+    <a href="#ciencia">Química & Biologia</a>
     <a href="#limites">Limites Planetários</a>
-    <a href="#calculadora">Calculadora</a>
+    <a href="#reaproveitamento">Reaproveitamento</a>
+    <a href="#calculadora">Calculadora de Impacto</a>
     <a href="#quiz">Quiz Interativo</a>
   </nav>
 
   <div class="container">
 
-    <!-- Seção Química & Biologia -->
-    <section id="ciencia">
-      <h2>1. Fundamentos Científicos (Química & Biologia)</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Química da Água</h3>
-          <p>A molécula de H₂O possui geometria angular e ligações de hidrogênio que garantem alto calor específico e capacidade de dissolução. O pH ideal para água potável varia entre 6,5 e 8,5.</p>
-        </div>
-        <div class="card">
-          <h3>Biologia & Ecossistemas</h3>
-          <p>A água representa cerca de 60% da massa corporal humana, atuando como transporte osmótico e solvente metabólico. A escassez afeta a fotossíntese vegetal e o equilíbrio bioma-atmosfera.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Seção Matemática & Limites Planetários -->
-    <section id="limites">
-      <h2>2. Limites Planetários & Reaproveitamento (Matemática)</h2>
-      <p>O limite planetário para uso de água doce estabelece um teto seguro para a retirada de água azul (rios e aquíferos) e alteração da água verde (umidade do solo). O consumo desenfreado ameaça a estabilidade global.</p>
+    <!-- SEÇÃO PRINCIPAL: DICAS DE CONSUMO DE ÁGUA -->
+    <section id="dicas">
+      <h2>1. Guia Prático: Dicas de Consumo Racional de Água</h2>
+      <p>Pequenas mudanças diárias geram um impacto matemático gigante no consumo familiar e na preservação dos mananciais.</p>
       
-      <div style="max-width: 600px; margin: 20px auto;">
-        <canvas id="graficoAgua"></canvas>
-      </div>
+      <div class="grid-3">
+        <div class="tip-card">
+          <h4>No Banheiro <span class="badge">Economia de até 90L/dia</span></h4>
+          <ul>
+            <li><strong>Banhos de 5 minutos:</strong> Reduzir o tempo de 12 para 5 minutos economiza até 90 litros de água por banho.</li>
+            <li><strong>Torneira fechada:</strong> Fechar a torneira ao escovar os dentes ou se barbear economiza cerca de 12 litros por minuto.</li>
+            <li><strong>Descarga eficiente:</strong> Prefira sistemas de duplo acionamento (3L/6L). Nunca use o vaso sanitário como lixeira.</li>
+          </ul>
+        </div>
 
-      <div class="card" style="margin-top: 20px;">
-        <h3>Dicas de Reaproveitamento</h3>
-        <ul>
-          <li><strong>Captação Pluvial:</strong> Armazenamento de água da chuva para regar plantas e lavar pisos.</li>
-          <li><strong>Água Cinza:</strong> Reutilização da água da máquina de lavar roupas para descarga sanitária.</li>
-        </ul>
+        <div class="tip-card">
+          <h4>Na Cozinha <span class="badge">Economia de até 100L/dia</span></h4>
+          <ul>
+            <li><strong>Enboate a louça antes:</strong> Ensaboar todos os pratos e talheres antes de abrir a torneira reduz o tempo de enxágue.</li>
+            <li><strong>Areador de torneira:</strong> Instale areadores nas torneiras; eles misturam ar à água, mantendo a pressão e reduzindo a vazão em até 50%.</li>
+            <li><strong>Descongelamento consciente:</strong> Descongele alimentos na geladeira em vez de usar água corrente.</li>
+          </ul>
+        </div>
+
+        <div class="tip-card">
+          <h4>Na Lavanderia & Jardim <span class="badge">Economia de até 150L/dia</span></h4>
+          <ul>
+            <li><strong>Carga máxima:</strong> Acione a máquina de lavar roupas apenas quando estiver com a capacidade total atingida.</li>
+            <li><strong>Vassoura em vez de mangueira:</strong> Use vassoura para limpar calçadas. Uma mangueira aberta por 15 minutos gasta cerca de 280 litros.</li>
+            <li><strong>Rega inteligente:</strong> Regue plantas no início da manhã ou final da tarde para diminuir a evaporação rápida pela luz solar.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <!-- Calculadora Interativa -->
+    <!-- SEÇÃO QUÍMICA E BIOLOGIA -->
+    <section id="ciencia">
+      <h2>2. A Ciência por Trás da Economia (Química e Biologia)</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Química da Conservação da Água</h3>
+          <p>A água ($H_2O$) é uma molécula polar com geometria angular e pontes de hidrogênio que conferem elevado calor específico e capacidade de dissolução.</p>
+          <ul>
+            <li><strong>Contaminação Química:</strong> Um único litro de óleo de cozinha descartado no esgoto pode contaminar até 1 milhão de litros de água doce.</li>
+            <li><strong>Ação de Detergentes:</strong> Tensioativos dificultam a oxigenação dos rios. Usar dosagens corretas de sabão economiza enxágue e preserva os recursos hídricos.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Biologia e Pegada Hídrica</h3>
+          <p>Todos os organismos vivos dependem do transporte hídrico metabólico. A água sustentável garante a saúde dos biomas e dos ecossistemas agrícolas.</p>
+          <ul>
+            <li><strong>Água Virtual:</strong> O consumo indireto de água na produção de bens (ex.: são necessários ~15.000 litros de água para produzir 1 kg de carne bovina).</li>
+            <li><strong>Equilíbrio Ecológico:</strong> O consumo excessivo reduz o lençol freático, afetando a vegetação e o ciclo de transpiração das plantas.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO LIMITES PLANETÁRIOS -->
+    <section id="limites">
+      <h2>3. Limites Planetários e Uso Global da Água</h2>
+      <p>O conceito de Limites Planetários estabelece a margem de segurança para o consumo hídrico global sem desestabilizar os sistemas da Terra.</p>
+      
+      <div class="grid-2">
+        <div>
+          <h3>Tipos de Água no Planeta</h3>
+          <ul>
+            <li><strong>Água Azul:</strong> Água doce de rios, lagos e aquíferos subterrâneos.</li>
+            <li><strong>Água Verde:</strong> Umidade do solo proveniente das chuvas, essencial para vegetação e agricultura.</li>
+            <li><strong>Água Cinza:</strong> Água residual de uso doméstico (chuveiro, máquina de lavar, pia).</li>
+          </ul>
+          <p style="margin-top: 15px;">Matematicamente, o limite seguro para a retirada global de água azul é estimado em cerca de 4.000 $km^3$/ano. Atualmente, a humanidade já utiliza mais de 2.600 $km^3$/ano.</p>
+        </div>
+        <div>
+          <canvas id="graficoLimites"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO REAPROVEITAMENTO -->
+    <section id="reaproveitamento">
+      <h2>4. Métodos Práticos de Reaproveitamento de Água</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Captação de Água da Chuva (Pluvial)</h3>
+          <p>Instalação de cisternas ou baldes na saída das calhas do telhado.</p>
+          <p><strong>Cálculo do volume captável:</strong></p>
+          <p>$$V = A \times P \times C$$</p>
+          <p>Onde $A$ é a área do telhado ($m^2$), $P$ a precipitação ($mm$) e $C$ o coeficiente de aproveitamento (~0,85).</p>
+        </div>
+
+        <div class="card">
+          <h3>Reuso de Água Cinza Doméstica</h3>
+          <p>A água do enxágue da máquina de lavar e do banho pode ser direcionada para:</p>
+          <ul>
+            <li>Descargas em vasos sanitários.</li>
+            <li>Lavagem de quintais, calçadas e garagens.</li>
+            <li>Rega de plantas ornamentais (água sem detergentes agressivos).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALCULADORA DE CONSUMO E ECONOMIA -->
     <section id="calculadora">
-      <h2>3. Calculadora de Consumo Diário</h2>
+      <h2>5. Calculadora de Pegada Hídrica Doméstica</h2>
+      <p>Insira seus hábitos diários para calcular o consumo mensal e veja o quanto você pode economizar aplicando nossas dicas de consumo de água.</p>
+
       <form id="calcForm">
-        <label for="banho">Tempo médio de banho (minutos):</label>
-        <input type="number" id="banho" value="10" min="1" required>
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="tempoBanho">Tempo no banho (minutos):</label>
+            <input type="number" id="tempoBanho" value="12" min="1">
+          </div>
+          <div class="form-group">
+            <label for="torneiraEscovar">Torneira aberta escovando dentes/mãos (minutos):</label>
+            <input type="number" id="torneiraEscovar" value="4" min="0">
+          </div>
+          <div class="form-group">
+            <label for="lavarLouca">Lavar louça com torneira aberta (minutos):</label>
+            <input type="number" id="lavarLouca" value="15" min="0">
+          </div>
+          <div class="form-group">
+            <label for="lavarMaquina">Ciclos de máquina de lavar por semana:</label>
+            <input type="number" id="lavarMaquina" value="4" min="0">
+          </div>
+        </div>
 
-        <label for="escovacao">Torneira aberta ao escovar os dentes/lavar mãos (minutos):</label>
-        <input type="number" id="escovacao" value="3" min="0" required>
-
-        <label for="louca">Lavar louça com torneira aberta (minutos):</label>
-        <input type="number" id="louca" value="15" min="0" required>
-
-        <button type="button" onclick="calcularConsumo()">Calcular Consumo</button>
+        <button type="button" onclick="calcularImpacto()">Calcular Consumo e Economia</button>
       </form>
 
-      <div id="resultadoCalc" class="result" style="display:none;"></div>
+      <div id="resultadoCalc" class="result-box" style="display: none;"></div>
     </section>
 
-    <!-- Quiz Interativo -->
+    <!-- QUIZ INTERATIVO -->
     <section id="quiz">
-      <h2>4. Quiz Interativo</h2>
+      <h2>6. Quiz: Teste Seus Conhecimentos sobre Água</h2>
       <form id="quizForm">
-        <p><strong>1. Qual a geometria molecular da água e qual ângulo aproximado suas ligações formam?</strong></p>
-        <div class="quiz-option"><input type="radio" name="q1" value="a"> Linear / 180°</div>
-        <div class="quiz-option"><input type="radio" name="q1" value="b"> Angular / 104,5°</div>
-        <div class="quiz-option"><input type="radio" name="q1" value="c"> Trigonal Plana / 120°</div>
+        <div class="quiz-question">
+          <p><strong>1. Qual destas atitudes gera a maior economia imediata de água na rotina diária?</strong></p>
+          <div class="quiz-option"><label><input type="radio" name="q1" value="a"> Reduzir o tempo de banho de 12 para 5 minutos.</label></div>
+          <div class="quiz-option"><label><input type="radio" name="q1" value="b"> Lavar o carro com balde uma vez no ano.</label></div>
+          <div class="quiz-option"><label><input type="radio" name="q1" value="c"> Deixar a torneira pingando levemente.</label></div>
+        </div>
 
-        <p style="margin-top: 15px;"><strong>2. O que caracteriza a "água cinza" em residências?</strong></p>
-        <div class="quiz-option"><input type="radio" name="q2" value="a"> Água contendo esgoto sanitário bruto.</div>
-        <div class="quiz-option"><input type="radio" name="q2" value="b"> Água residual de chuveiros, pias e máquinas de lavar.</div>
-        <div class="quiz-option"><input type="radio" name="q2" value="c"> Água da chuva recém-coletada.</div>
+        <div class="quiz-question">
+          <p><strong>2. O que se entende por "Água Cinza" no reaproveitamento residencial?</strong></p>
+          <div class="quiz-option"><label><input type="radio" name="q2" value="a"> Água coletada diretamente da chuva sem tratamento.</label></div>
+          <div class="quiz-option"><label><input type="radio" name="q2" value="b"> Água descartada de chuveiros, pias e máquinas de lavar.</label></div>
+          <div class="quiz-option"><label><input type="radio" name="q2" value="c"> Água vinda do esgoto do vaso sanitário.</label></div>
+        </div>
 
-        <button type="button" onclick="avaliarQuiz()">Enviar Respostas</button>
+        <div class="quiz-question">
+          <p><strong>3. Por que colocar areadores nas torneiras é uma dica eficiente?</strong></p>
+          <div class="quiz-option"><label><input type="radio" name="q3" value="a"> Porque esquenta a água sem usar energia.</label></div>
+          <div class="quiz-option"><label><input type="radio" name="q3" value="b"> Porque mistura ar à água, mantendo a sensação de pressão e reduzindo o fluxo em até 50%.</label></div>
+          <div class="quiz-option"><label><input type="radio" name="q3" value="c"> Porque altera o pH da água deixando-a potável.</label></div>
+        </div>
+
+        <button type="button" onclick="validarQuiz()">Enviar Respostas do Quiz</button>
       </form>
-      <div id="resultadoQuiz" class="result" style="display:none;"></div>
+
+      <div id="resultadoQuiz" class="result-box" style="display: none;"></div>
     </section>
 
   </div>
 
   <footer>
-    <p>Projeto Educacional de Conscientização Hídrica | Desenvolvido no VS Code & GitHub</p>
+    <p>Projeto Educacional de Uso Racional da Água | Desenvolvimento Interdisciplinar (Química, Biologia e Matemática)</p>
   </footer>
 
   <script>
-    // Gráfico de Limites Planetários / Distribuição de Uso
-    const ctx = document.getElementById('graficoAgua').getContext('2d');
+    // Gráfico de Pizza - Consumo Hídrico Global por Setor
+    const ctx = document.getElementById('graficoLimites').getContext('2d');
     new Chart(ctx, {
-      type: 'doughnut',
+      type: 'pie',
       data: {
         labels: ['Agricultura (70%)', 'Indústria (20%)', 'Uso Doméstico (10%)'],
         datasets: [{
           data: [70, 20, 10],
-          backgroundColor: ['#0077b6', '#00b4d8', '#90e0ef']
+          backgroundColor: ['#0077b6', '#00b4d8', '#90e0ef'],
+          borderWidth: 2
         }]
       },
       options: {
         responsive: true,
         plugins: {
           legend: { position: 'bottom' },
-          title: { display: true, text: 'Distribuição Mundial do Consumo de Água Doce' }
+          title: {
+            display: true,
+            text: 'Distribuição do Consumo de Água Doce no Mundo'
+          }
         }
       }
     });
 
-    // Calculadora de Consumo
-    function calcularConsumo() {
-      const banho = parseFloat(document.getElementById('banho').value) || 0;
-      const escovacao = parseFloat(document.getElementById('escovacao').value) || 0;
-      const louca = parseFloat(document.getElementById('louca').value) || 0;
+    // Calculadora de Impacto
+    function calcularImpacto() {
+      const banho = parseFloat(document.getElementById('tempoBanho').value) || 0;
+      const torneira = parseFloat(document.getElementById('torneiraEscovar').value) || 0;
+      const louca = parseFloat(document.getElementById('lavarLouca').value) || 0;
+      const maquinaSemana = parseFloat(document.getElementById('lavarMaquina').value) || 0;
 
-      // Vazões médias: Banho (9 L/min), Torneira (12 L/min)
-      const consumoBanho = banho * 9;
-      const consumoEscovacao = escovacao * 12;
-      const consumoLouca = louca * 12;
+      // Consumos padrão (Litros por minuto/ciclo)
+      const lBanho = banho * 9;
+      const lTorneira = torneira * 12;
+      const lLouca = louca * 12;
+      const lMaquinaDia = (maquinaSemana * 100) / 7;
 
-      const totalDiario = consumoBanho + consumoEscovacao + consumoLouca;
-      const totalMensal = totalDiario * 30;
+      const consumoDiario = lBanho + lTorneira + lLouca + lMaquinaDia;
+      const consumoMensal = consumoDiario * 30;
 
-      const resDiv = document.getElementById('resultadoCalc');
-      resDiv.style.display = 'block';
-      resDiv.innerHTML = `
-        <p>Seu consumo diário estimado é de <strong>${totalDiario.toFixed(1)} Litros</strong>.</p>
-        <p>Consumo mensal: <strong>${totalMensal.toFixed(1)} Litros</strong>.</p>
-        <p><em>Dica Matemática: Reduzindo o banho para 5 minutos, você economiza cerca de ${(banho > 5 ? (banho - 5)*9*30 : 0).toFixed(0)} Litros por mês!</em></p>
+      // Estimativa de Economia ao aplicar as Dicas
+      const banhoEcon = Math.min(banho, 5) * 9;
+      const torneiraEcon = Math.min(torneira, 1) * 12;
+      const loucaEcon = Math.min(louca, 8) * 12;
+      const consumoDiarioOtimizado = banhoEcon + torneiraEcon + loucaEcon + lMaquinaDia;
+      const economiaMensal = (consumoDiario - consumoDiarioOtimizado) * 30;
+
+      const res = document.getElementById('resultadoCalc');
+      res.style.display = 'block';
+      res.innerHTML = `
+        <h3>Seu Diagnóstico Hídrico:</h3>
+        <p>• Consumo Diário Atual: <strong>${consumoDiario.toFixed(0)} Litros</strong></p>
+        <p>• Consumo Mensal Atual: <strong>${consumoMensal.toFixed(0)} Litros</strong></p>
+        <hr style="margin: 10px 0;">
+        <p style="color: #2a9d8f;"><strong>Oportunidade de Economia:</strong></p>
+        <p>Ao aplicar as Dicas de Consumo Racional (banho de 5 min, fechar torneira e otimizar a louça), você pode economizar cerca de <strong>${economiaMensal > 0 ? economiaMensal.toFixed(0) : 0} Litros por mês</strong>!</p>
       `;
     }
 
-    // Avaliação do Quiz
-    function avaliarQuiz() {
-      let pontos = 0;
+    // Validação do Quiz
+    function validarQuiz() {
+      let score = 0;
+      const total = 3;
+
       const q1 = document.querySelector('input[name="q1"]:checked');
       const q2 = document.querySelector('input[name="q2"]:checked');
+      const q3 = document.querySelector('input[name="q3"]:checked');
 
-      if (q1 && q1.value === 'b') pontos++;
-      if (q2 && q2.value === 'b') pontos++;
+      if (q1 && q1.value === 'a') score++;
+      if (q2 && q2.value === 'b') score++;
+      if (q3 && q3.value === 'b') score++;
 
       const resQuiz = document.getElementById('resultadoQuiz');
       resQuiz.style.display = 'block';
-      resQuiz.innerHTML = `Você acertou <strong>${pontos} de 2</strong> perguntas!`;
+      resQuiz.innerHTML = `
+        <h3>Resultado do Quiz:</h3>
+        <p>Você acertou <strong>${score} de ${total}</strong> perguntas!</p>
+        <p>${score === 3 ? 'Parabéns! Você é um expert em uso consciente da água!' : 'Continue revisando nossas dicas para aprimorar seus hábitos sustentáveis.'}</p>
+      `;
     }
   </script>
 </body>
