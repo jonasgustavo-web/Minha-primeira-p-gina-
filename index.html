@@ -1,259 +1,1589 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Consumo Consciente de Água | Projeto Acadêmico</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <!-- Chart.js para o gráfico -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    :root {
-      --primary: #0077b6;
-      --secondary: #00b4d8;
-      --accent: #90e0ef;
-      --bg-light: #f8f9fa;
-      --text-dark: #2b2d42;
-      --white: #ffffff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <title>Água em Equilíbrio | Ciência, Consumo e Futuro</title>
 
-    body {
-      font-family: 'Roboto', sans-serif;
-      color: var(--text-dark);
-      background-color: var(--bg-light);
-      line-height: 1.6;
-    }
+    <meta name="description"
+        content="Projeto interdisciplinar sobre consumo consciente, água, química, matemática, biologia e limites planetários.">
 
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: var(--white);
-      padding: 60px 20px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    header h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
-    header p {
-      font-size: 1.2rem;
-      font-weight: 300;
-      max-width: 700px;
-      margin: 0 auto;
-    }
+    <!-- Ícones -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    .container {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin-bottom: 50px;
-    }
-
-    .card {
-      background: var(--white);
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      border-top: 5px solid var(--primary);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card h3 {
-      font-family: 'Montserrat', sans-serif;
-      color: var(--primary);
-      margin-bottom: 15px;
-      font-size: 1.4rem;
-    }
-
-    .card ul {
-      list-style-type: none;
-    }
-
-    .card ul li {
-      margin-bottom: 12px;
-      position: relative;
-      padding-left: 20px;
-    }
-
-    .card ul li::before {
-      content: "💧";
-      position: absolute;
-      left: 0;
-      font-size: 0.8rem;
-    }
-
-    .section-title {
-      font-family: 'Montserrat', sans-serif;
-      text-align: center;
-      font-size: 2rem;
-      color: var(--primary);
-      margin-bottom: 30px;
-    }
-
-    .chart-container {
-      background: var(--white);
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      margin-bottom: 50px;
-    }
-
-    .impact-box {
-      background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
-      padding: 30px;
-      border-radius: 12px;
-      text-align: center;
-      margin-bottom: 50px;
-    }
-
-    .impact-box h3 {
-      color: var(--primary);
-      margin-bottom: 15px;
-    }
-
-    footer {
-      background-color: var(--text-dark);
-      color: var(--white);
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-    }
-  </style>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
 
-  <header>
-    <h1>Uso Consciente da Água</h1>
-    <p>Estratégias práticas, dados estatísticos e soluções sustentáveis para a preservação do recurso hídrico.</p>
-  </header>
+    <!-- ================= PRELOADER ================= -->
 
-  <div class="container">
-
-    <!-- Seção dos 3 Pilares de Dicas -->
-    <h2 class="section-title">Dicas Práticas para o Dia a Dia</h2>
-    
-    <div class="grid-3">
-      <!-- Pilar 1 -->
-      <div class="card">
-        <h3>1. No Banheiro</h3>
-        <ul>
-          <li><strong>Redução no banho:</strong> Diminuir o tempo de banho de 15 para 5 minutos economiza até 90 litros de água.</li>
-          <li><strong>Fechamento de torneiras:</strong> Desligue a torneira ao escovar os dentes ou se barbear (economia de até 12 litros por uso).</li>
-          <li><strong>Descargas conscientes:</strong> Mantenha a manutenção das válvulas de descarga em dia para evitar vazamentos invisíveis.</li>
-        </ul>
-      </div>
-
-      <!-- Pilar 2 -->
-      <div class="card">
-        <h3>2. Na Cozinha e Lavanderia</h3>
-        <ul>
-          <li><strong>Ensoapamento inteligente:</strong> Ensoapados todos os pratos antes de abrir a torneira para o enxágue.</li>
-          <li><strong>Capacidade máxima:</strong> Utilize as máquinas de lavar louça e roupa apenas quando estiverem totalmente cheias.</li>
-          <li><strong>Reutilização de água:</strong> Aproveite a água do enxágue da máquina para lavar quintais e calçadas.</li>
-        </ul>
-      </div>
-
-      <!-- Pilar 3 -->
-      <div class="card">
-        <h3>3. Manutenção e Jardim</h3>
-        <ul>
-          <li><strong>Verificação de vazamentos:</strong> Um gotejamento simples pode desperdiçar mais de 46 litros de água por dia.</li>
-          <li><strong>Rega eficiente:</strong> Regue as plantas no início da manhã ou final da tarde para evitar a evaporação rápida.</li>
-          <li><strong>Uso do balde:</strong> Substitua a mangueira por balde ao lavar o carro (economia superior a 200 litros).</li>
-        </ul>
-      </div>
+    <div id="preloader">
+        <div class="loader-water"></div>
+        <p>Carregando o planeta...</p>
     </div>
 
-    <!-- Seção do Gráfico -->
-    <div class="chart-container">
-      <h2 class="section-title">Comparativo de Consumo (Em Litros)</h2>
-      <canvas id="waterChart" width="400" height="180"></canvas>
-    </div>
 
-    <!-- Quadro de Impacto Educacional -->
-    <div class="impact-box">
-      <h3>Por que este tema é crucial?</h3>
-      <p>Apenas <strong>0,3%</strong> de toda a água do planeta Terra está disponível e acessível para o consumo humano. Pequenas mudanças de hábitos individuais reduzem significativamente a pegada hídrica e garantem a sustentabilidade para as futuras gerações.</p>
-    </div>
+    <!-- ================= HEADER ================= -->
 
-  </div>
+    <header class="header">
 
-  <footer>
-    <p>Apresentação Escolar | Consumo Consciente de Água &copy; 2026</p>
-  </footer>
+        <div class="nav-container">
 
-  <script>
-    // Configuração do Gráfico de Comparação
-    const ctx = document.getElementById('waterChart').getContext('2d');
-    const waterChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: [
-          'Banho (15 min vs 5 min)', 
-          'Escovar Dentes (Aberta vs Fechada)', 
-          'Lavar Louça (Contínua vs Com Pausa)', 
-          'Lavar Carro (Mangueira vs Balde)'
-        ],
-        datasets: [
-          {
-            label: 'Consumo Tradicional (Litros)',
-            data: [135, 12, 117, 216],
-            backgroundColor: 'rgba(230, 57, 70, 0.7)',
-            borderColor: 'rgba(230, 57, 70, 1)',
-            borderWidth: 1
-          },
-          {
-            label: 'Consumo Consciente (Litros)',
-            data: [45, 0.5, 20, 40],
-            backgroundColor: 'rgba(42, 157, 143, 0.7)',
-            borderColor: 'rgba(42, 157, 143, 1)',
-            borderWidth: 1
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: true,
-            text: 'Impacto da Mudança de Hábitos no Consumo Diário de Água'
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Litros Gastos'
-            }
-          }
-        }
-      }
-    });
-  </script>
+            <a href="#inicio" class="logo">
+                <span class="logo-icon">
+                    <i class="fa-solid fa-droplet"></i>
+                </span>
+
+                <span>
+                    ÁGUA<span>+</span>
+                </span>
+            </a>
+
+            <nav class="nav">
+
+                <a href="#inicio">Início</a>
+                <a href="#consumo">Consumo</a>
+                <a href="#ciencia">Ciência</a>
+                <a href="#planeta">Planeta</a>
+                <a href="#reuso">Reúso</a>
+                <a href="#sanepar">Sanepar</a>
+
+            </nav>
+
+            <button class="theme-button" id="themeButton">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <button class="menu-button" id="menuButton">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero" id="inicio">
+
+            <div class="hero-background">
+
+                <div class="bubble bubble-1"></div>
+                <div class="bubble bubble-2"></div>
+                <div class="bubble bubble-3"></div>
+
+                <div class="wave wave-1"></div>
+                <div class="wave wave-2"></div>
+
+            </div>
+
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+                    <i class="fa-solid fa-earth-americas"></i>
+                    PROJETO INTERDISCIPLINAR
+                </div>
+
+                <h1>
+                    A água que usamos
+                    <span>define o futuro</span>
+                    que teremos.
+                </h1>
+
+                <p>
+                    Descubra como química, matemática e biologia se
+                    encontram em uma das questões mais importantes
+                    do nosso planeta: <strong>o uso consciente da água.</strong>
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#consumo" class="btn btn-primary">
+                        Calcular meu consumo
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                    <a href="#ciencia" class="btn btn-outline">
+                        Explorar a ciência
+                    </a>
+
+                </div>
+
+                <div class="scroll-indicator">
+                    <span>ROLE PARA DESCOBRIR</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+
+            </div>
+
+
+            <div class="hero-visual">
+
+                <div class="water-orbit orbit-1"></div>
+                <div class="water-orbit orbit-2"></div>
+
+                <div class="water-drop">
+
+                    <div class="drop-shine"></div>
+
+                    <i class="fa-solid fa-droplet"></i>
+
+                    <div class="drop-text">
+                        <strong>H₂O</strong>
+                        <span>essencial à vida</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= STATS ================= -->
+
+        <section class="stats-section">
+
+            <div class="stats-container">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+
+                    <div>
+                        <strong data-counter="61.3">0</strong>
+                        <span>milhões de L/dia</span>
+                    </div>
+
+                    <p>Consumo informado pela Sanepar para Maringá</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        <i class="fa-solid fa-flask"></i>
+                    </div>
+
+                    <div>
+                        <strong data-counter="9820">0</strong>
+                        <span>análises/mês</span>
+                    </div>
+
+                    <p>Controle de qualidade no sistema de Maringá</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div>
+                        <strong data-counter="450">0</strong>
+                        <span>mil pessoas</span>
+                    </div>
+
+                    <p>População atendida pelo sistema citado</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= INTRO ================= -->
+
+        <section class="section intro-section">
+
+            <div class="section-title">
+
+                <span class="eyebrow">POR QUE A ÁGUA IMPORTA?</span>
+
+                <h2>
+                    Um problema que pode ser
+                    <span>observado pela ciência.</span>
+                </h2>
+
+                <p>
+                    A água está presente em praticamente todos os
+                    processos que sustentam a vida. Quando estudamos
+                    seu consumo, encontramos matemática, química,
+                    biologia, tecnologia e questões ambientais.
+                </p>
+
+            </div>
+
+
+            <div class="science-cards">
+
+                <article class="science-card chemistry">
+
+                    <div class="card-number">01</div>
+
+                    <div class="science-icon">
+                        <i class="fa-solid fa-flask"></i>
+                    </div>
+
+                    <h3>Química</h3>
+
+                    <p>
+                        Entenda H₂O, pH, sais minerais,
+                        tratamento e qualidade da água.
+                    </p>
+
+                    <a href="#quimica">
+                        Explorar
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </article>
+
+
+                <article class="science-card math">
+
+                    <div class="card-number">02</div>
+
+                    <div class="science-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+
+                    <h3>Matemática</h3>
+
+                    <p>
+                        Transforme hábitos de consumo
+                        em números, gráficos e dados.
+                    </p>
+
+                    <a href="#matematica">
+                        Explorar
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </article>
+
+
+                <article class="science-card biology">
+
+                    <div class="card-number">03</div>
+
+                    <div class="science-icon">
+                        <i class="fa-solid fa-dna"></i>
+                    </div>
+
+                    <h3>Biologia</h3>
+
+                    <p>
+                        Descubra por que a água é indispensável
+                        para células, organismos e ecossistemas.
+                    </p>
+
+                    <a href="#biologia">
+                        Explorar
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CONSUMO ================= -->
+
+        <section class="section consumption-section" id="consumo">
+
+            <div class="section-title center">
+
+                <span class="eyebrow">MATEMÁTICA NA VIDA REAL</span>
+
+                <h2>
+                    Quanto de água
+                    <span>você consome?</span>
+                </h2>
+
+                <p>
+                    Faça uma estimativa do seu consumo diário.
+                    Pequenas mudanças podem representar muitos litros
+                    ao longo de um mês.
+                </p>
+
+            </div>
+
+
+            <div class="calculator">
+
+                <div class="calculator-form">
+
+                    <h3>
+                        <i class="fa-solid fa-calculator"></i>
+                        Calculadora de consumo
+                    </h3>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            <i class="fa-solid fa-shower"></i>
+                            Tempo de banho por dia
+                        </label>
+
+                        <div class="range-wrapper">
+
+                            <input
+                                type="range"
+                                id="bath"
+                                min="1"
+                                max="30"
+                                value="10">
+
+                            <span id="bathValue">10 min</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            <i class="fa-solid fa-toilet"></i>
+                            Descargas por dia
+                        </label>
+
+                        <div class="range-wrapper">
+
+                            <input
+                                type="range"
+                                id="toilet"
+                                min="1"
+                                max="15"
+                                value="5">
+
+                            <span id="toiletValue">5</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            <i class="fa-solid fa-faucet-drip"></i>
+                            Torneira aberta por dia
+                        </label>
+
+                        <div class="range-wrapper">
+
+                            <input
+                                type="range"
+                                id="faucet"
+                                min="1"
+                                max="30"
+                                value="8">
+
+                            <span id="faucetValue">8 min</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            <i class="fa-solid fa-shirt"></i>
+                            Lavagens de roupa por semana
+                        </label>
+
+                        <div class="range-wrapper">
+
+                            <input
+                                type="range"
+                                id="laundry"
+                                min="0"
+                                max="14"
+                                value="4">
+
+                            <span id="laundryValue">4</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <button class="calculate-button" id="calculateButton">
+
+                        CALCULAR MEU CONSUMO
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </div>
+
+
+                <div class="calculator-result">
+
+                    <div class="result-circle">
+
+                        <div>
+
+                            <strong id="totalConsumption">
+                                0
+                            </strong>
+
+                            <span>litros/dia</span>
+
+                        </div>
+
+                    </div>
+
+                    <h3>Seu consumo estimado</h3>
+
+                    <p id="resultMessage">
+                        Ajuste os hábitos e descubra o resultado.
+                    </p>
+
+                    <div class="result-month">
+
+                        <span>Estimativa mensal</span>
+
+                        <strong id="monthlyConsumption">
+                            0 L
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= GRAFICOS ================= -->
+
+        <section class="section charts-section" id="matematica">
+
+            <div class="section-title">
+
+                <span class="eyebrow">DADOS & GRÁFICOS</span>
+
+                <h2>
+                    Quando os hábitos
+                    <span>viram números.</span>
+                </h2>
+
+                <p>
+                    A matemática permite visualizar como diferentes
+                    atividades contribuem para o consumo de água.
+                </p>
+
+            </div>
+
+
+            <div class="charts-grid">
+
+                <div class="chart-card">
+
+                    <div class="chart-header">
+
+                        <div>
+                            <span>CONSUMO ESTIMADO</span>
+                            <h3>Por atividade</h3>
+                        </div>
+
+                        <i class="fa-solid fa-chart-column"></i>
+
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="consumptionChart"></canvas>
+                    </div>
+
+                </div>
+
+
+                <div class="chart-card">
+
+                    <div class="chart-header">
+
+                        <div>
+                            <span>ECONOMIA</span>
+                            <h3>Antes × depois</h3>
+                        </div>
+
+                        <i class="fa-solid fa-arrow-trend-down"></i>
+
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="savingChart"></canvas>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CIENCIA ================= -->
+
+        <section class="section science-section" id="ciencia">
+
+            <div class="section-title center">
+
+                <span class="eyebrow">A ÁGUA PELA CIÊNCIA</span>
+
+                <h2>
+                    Três disciplinas.
+                    <span>Um mesmo recurso.</span>
+                </h2>
+
+            </div>
+
+
+            <!-- QUIMICA -->
+
+            <div class="science-block" id="quimica">
+
+                <div class="science-content">
+
+                    <span class="science-label chemistry-label">
+                        QUÍMICA
+                    </span>
+
+                    <h2>
+                        A molécula que
+                        <span>permite a vida.</span>
+                    </h2>
+
+                    <p>
+                        A água é formada por dois átomos de hidrogênio
+                        ligados a um átomo de oxigênio: H₂O.
+                    </p>
+
+                    <p>
+                        Suas propriedades químicas fazem dela um
+                        excelente solvente e permitem que participe de
+                        inúmeras reações fundamentais para os seres vivos.
+                    </p>
+
+
+                    <div class="chemistry-facts">
+
+                        <div>
+                            <strong>H₂O</strong>
+                            <span>Fórmula molecular</span>
+                        </div>
+
+                        <div>
+                            <strong>7</strong>
+                            <span>pH aproximadamente neutro</span>
+                        </div>
+
+                        <div>
+                            <strong>100°C</strong>
+                            <span>Ebulição ao nível do mar</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="molecule">
+
+                    <div class="atom oxygen">
+                        O
+                    </div>
+
+                    <div class="bond bond-1"></div>
+                    <div class="bond bond-2"></div>
+
+                    <div class="atom hydrogen h1">
+                        H
+                    </div>
+
+                    <div class="atom hydrogen h2">
+                        H
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BIOLOGIA -->
+
+            <div class="science-block reverse" id="biologia">
+
+                <div class="science-content">
+
+                    <span class="science-label biology-label">
+                        BIOLOGIA
+                    </span>
+
+                    <h2>
+                        Sem água,
+                        <span>não existe vida.</span>
+                    </h2>
+
+                    <p>
+                        As células precisam de água para realizar
+                        reações químicas, transportar substâncias,
+                        regular temperatura e manter seu funcionamento.
+                    </p>
+
+                    <p>
+                        Plantas, animais, seres humanos e ecossistemas
+                        dependem de ciclos naturais que envolvem a água.
+                    </p>
+
+
+                    <div class="life-list">
+
+                        <div>
+                            <i class="fa-solid fa-seedling"></i>
+                            <span>Plantas</span>
+                        </div>
+
+                        <div>
+                            <i class="fa-solid fa-fish"></i>
+                            <span>Animais</span>
+                        </div>
+
+                        <div>
+                            <i class="fa-solid fa-dna"></i>
+                            <span>Células</span>
+                        </div>
+
+                        <div>
+                            <i class="fa-solid fa-tree"></i>
+                            <span>Ecossistemas</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="biology-visual">
+
+                    <div class="cell">
+
+                        <div class="nucleus"></div>
+
+                        <div class="cell-particle p1"></div>
+                        <div class="cell-particle p2"></div>
+                        <div class="cell-particle p3"></div>
+
+                    </div>
+
+                    <div class="water-particle wp1">H₂O</div>
+                    <div class="water-particle wp2">H₂O</div>
+                    <div class="water-particle wp3">H₂O</div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CICLO ================= -->
+
+        <section class="cycle-section">
+
+            <div class="section-title center light">
+
+                <span class="eyebrow">BIOLOGIA & AMBIENTE</span>
+
+                <h2>
+                    O ciclo da água
+                    <span>nunca para.</span>
+                </h2>
+
+            </div>
+
+
+            <div class="water-cycle">
+
+                <div class="cycle-step">
+
+                    <div class="cycle-icon">
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+
+                    <h3>Evaporação</h3>
+
+                    <p>
+                        O calor transforma água líquida
+                        em vapor.
+                    </p>
+
+                </div>
+
+
+                <div class="cycle-arrow">
+                    →
+                </div>
+
+
+                <div class="cycle-step">
+
+                    <div class="cycle-icon">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+
+                    <h3>Condensação</h3>
+
+                    <p>
+                        O vapor esfria e forma
+                        pequenas gotas.
+                    </p>
+
+                </div>
+
+
+                <div class="cycle-arrow">
+                    →
+                </div>
+
+
+                <div class="cycle-step">
+
+                    <div class="cycle-icon">
+                        <i class="fa-solid fa-cloud-rain"></i>
+                    </div>
+
+                    <h3>Precipitação</h3>
+
+                    <p>
+                        A água retorna à superfície
+                        na forma de chuva.
+                    </p>
+
+                </div>
+
+
+                <div class="cycle-arrow">
+                    →
+                </div>
+
+
+                <div class="cycle-step">
+
+                    <div class="cycle-icon">
+                        <i class="fa-solid fa-water"></i>
+                    </div>
+
+                    <h3>Infiltração</h3>
+
+                    <p>
+                        Parte da água penetra no solo
+                        e abastece reservas.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PLANETARY ================= -->
+
+        <section class="section planet-section" id="planeta">
+
+            <div class="section-title center">
+
+                <span class="eyebrow">ESCALA PLANETÁRIA</span>
+
+                <h2>
+                    Limites planetários:
+                    <span>vivendo dentro da margem.</span>
+                </h2>
+
+                <p>
+                    O conceito de limites planetários ajuda a entender
+                    processos que regulam a estabilidade do sistema Terra.
+                </p>
+
+            </div>
+
+
+            <div class="planet-layout">
+
+                <div class="planet">
+
+                    <div class="planet-core">
+
+                        <i class="fa-solid fa-earth-americas"></i>
+
+                        <span>
+                            PLANETA<br>
+                            TERRA
+                        </span>
+
+                    </div>
+
+                    <div class="planet-ring ring-1"></div>
+                    <div class="planet-ring ring-2"></div>
+                    <div class="planet-ring ring-3"></div>
+
+                </div>
+
+
+                <div class="planet-cards">
+
+                    <article class="planet-card safe">
+
+                        <div class="planet-card-icon">
+                            <i class="fa-solid fa-water"></i>
+                        </div>
+
+                        <div>
+                            <span>ÁGUA DOCE</span>
+
+                            <h3>
+                                Ciclo hidrológico
+                            </h3>
+
+                            <p>
+                                Alterações no uso da água podem
+                                modificar o funcionamento de rios,
+                                solos e ecossistemas.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="planet-card warning">
+
+                        <div class="planet-card-icon">
+                            <i class="fa-solid fa-temperature-half"></i>
+                        </div>
+
+                        <div>
+                            <span>CLIMA</span>
+
+                            <h3>
+                                Equilíbrio climático
+                            </h3>
+
+                            <p>
+                                Água, atmosfera, oceanos e clima
+                                estão profundamente conectados.
+                            </p>
+                        </div>
+
+                    </article>
+
+
+                    <article class="planet-card danger">
+
+                        <div class="planet-card-icon">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+
+                        <div>
+                            <span>BIOSFERA</span>
+
+                            <h3>
+                                Biodiversidade
+                            </h3>
+
+                            <p>
+                                A disponibilidade e qualidade da água
+                                influenciam diretamente os ecossistemas.
+                            </p>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= REUSO ================= -->
+
+        <section class="section reuse-section" id="reuso">
+
+            <div class="section-title">
+
+                <span class="eyebrow">USO RACIONAL</span>
+
+                <h2>
+                    Água usada não significa
+                    <span>água perdida.</span>
+                </h2>
+
+                <p>
+                    O reaproveitamento pode reduzir a demanda por água
+                    potável em atividades que não precisam desse nível
+                    de qualidade.
+                </p>
+
+            </div>
+
+
+            <div class="reuse-grid">
+
+                <article class="reuse-card">
+
+                    <div class="reuse-number">
+                        01
+                    </div>
+
+                    <i class="fa-solid fa-cloud-rain"></i>
+
+                    <h3>Água da chuva</h3>
+
+                    <p>
+                        Pode ser coletada e utilizada, de forma adequada,
+                        para regar jardins e outras atividades não potáveis.
+                    </p>
+
+                    <span class="reuse-tag">
+                        CAPTAÇÃO
+                    </span>
+
+                </article>
+
+
+                <article class="reuse-card">
+
+                    <div class="reuse-number">
+                        02
+                    </div>
+
+                    <i class="fa-solid fa-wind"></i>
+
+                    <h3>Ar-condicionado</h3>
+
+                    <p>
+                        A água condensada pode ser aproveitada em
+                        algumas atividades domésticas não potáveis.
+                    </p>
+
+                    <span class="reuse-tag">
+                        REAPROVEITAMENTO
+                    </span>
+
+                </article>
+
+
+                <article class="reuse-card">
+
+                    <div class="reuse-number">
+                        03
+                    </div>
+
+                    <i class="fa-solid fa-shirt"></i>
+
+                    <h3>Água de lavagem</h3>
+
+                    <p>
+                        Dependendo do sistema e das condições,
+                        pode ter usos específicos fora do consumo humano.
+                    </p>
+
+                    <span class="reuse-tag">
+                        ÁGUA CINZA
+                    </span>
+
+                </article>
+
+            </div>
+
+
+            <div class="warning-box">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+                <div>
+
+                    <strong>
+                        Atenção!
+                    </strong>
+
+                    <p>
+                        Água de reúso não deve ser considerada automaticamente
+                        própria para beber. Cada aplicação exige cuidados
+                        específicos de qualidade e segurança.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SANEPAR ================= -->
+
+        <section class="sanepar-section" id="sanepar">
+
+            <div class="sanepar-overlay"></div>
+
+            <div class="section sanepar-content">
+
+                <div class="section-title light">
+
+                    <span class="eyebrow">
+                        NOSSA EXPERIÊNCIA
+                    </span>
+
+                    <h2>
+                        Visita à
+                        <span>Sanepar — Maringá.</span>
+                    </h2>
+
+                    <p>
+                        Da captação no Rio Pirapó até a torneira:
+                        conhecemos parte da estrutura responsável
+                        pelo abastecimento de água da cidade.
+                    </p>
+
+                </div>
+
+
+                <div class="timeline">
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-number">
+                            01
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <i class="fa-solid fa-water"></i>
+
+                            <h3>Captação</h3>
+
+                            <p>
+                                A água é captada no sistema de abastecimento
+                                antes de seguir para o tratamento.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-number">
+                            02
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <i class="fa-solid fa-flask"></i>
+
+                            <h3>Tratamento</h3>
+
+                            <p>
+                                A estação utiliza processos físico-químicos
+                                para tornar a água adequada ao abastecimento.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-number">
+                            03
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <i class="fa-solid fa-microscope"></i>
+
+                            <h3>Controle</h3>
+
+                            <p>
+                                Análises são realizadas para acompanhar
+                                a qualidade da água.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-number">
+                            04
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <i class="fa-solid fa-house"></i>
+
+                            <h3>Distribuição</h3>
+
+                            <p>
+                                Depois do tratamento, a água segue por
+                                reservatórios e redes até os consumidores.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="sanepar-dashboard">
+
+                    <div class="dashboard-title">
+
+                        <span>DADOS DE MARINGÁ</span>
+
+                        <h3>
+                            Uma estrutura de grande escala
+                        </h3>
+
+                    </div>
+
+
+                    <div class="dashboard-grid">
+
+                        <div class="dashboard-card">
+
+                            <i class="fa-solid fa-road"></i>
+
+                            <strong>
+                                2.629 km
+                            </strong>
+
+                            <span>
+                                de tubulação
+                            </span>
+
+                        </div>
+
+
+                        <div class="dashboard-card">
+
+                            <i class="fa-solid fa-boxes-stacked"></i>
+
+                            <strong>
+                                23
+                            </strong>
+
+                            <span>
+                                reservatórios
+                            </span>
+
+                        </div>
+
+
+                        <div class="dashboard-card">
+
+                            <i class="fa-solid fa-faucet"></i>
+
+                            <strong>
+                                1.400 L/s
+                            </strong>
+
+                            <span>
+                                capacidade da ETA
+                            </span>
+
+                        </div>
+
+
+                        <div class="dashboard-card">
+
+                            <i class="fa-solid fa-flask-vial"></i>
+
+                            <strong>
+                                ~9.820
+                            </strong>
+
+                            <span>
+                                análises/mês
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ÁREA PARA FOTOS -->
+
+                <div class="visit-memory">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            REGISTRO DA TURMA
+                        </span>
+
+                        <h2>
+                            Nossa visita
+                            <span>em imagens.</span>
+                        </h2>
+
+                        <p>
+                            Substitua os espaços abaixo pelas fotos que
+                            vocês tiraram durante a visita à Sanepar.
+                        </p>
+
+                    </div>
+
+
+                    <div class="photo-grid">
+
+                        <div class="photo-placeholder">
+                            <i class="fa-solid fa-camera"></i>
+                            <span>FOTO 01</span>
+                        </div>
+
+                        <div class="photo-placeholder">
+                            <i class="fa-solid fa-camera"></i>
+                            <span>FOTO 02</span>
+                        </div>
+
+                        <div class="photo-placeholder">
+                            <i class="fa-solid fa-camera"></i>
+                            <span>FOTO 03</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DICAS ================= -->
+
+        <section class="section tips-section">
+
+            <div class="section-title center">
+
+                <span class="eyebrow">PEQUENAS ATITUDES</span>
+
+                <h2>
+                    10 dicas para
+                    <span>economizar água.</span>
+                </h2>
+
+            </div>
+
+
+            <div class="tips-grid">
+
+                <div class="tip">
+                    <span>01</span>
+                    <i class="fa-solid fa-shower"></i>
+                    <h3>Banhos mais curtos</h3>
+                    <p>Reduza alguns minutos sempre que possível.</p>
+                </div>
+
+                <div class="tip">
+                    <span>02</span>
+                    <i class="fa-solid fa-faucet"></i>
+                    <h3>Feche a torneira</h3>
+                    <p>Não deixe a água correr sem necessidade.</p>
+                </div>
+
+                <div class="tip">
+                    <span>03</span>
+                    <i class="fa-solid fa-wrench"></i>
+                    <h3>Conserte vazamentos</h3>
+                    <p>Uma pequena fuga pode representar desperdício.</p>
+                </div>
+
+                <div class="tip">
+                    <span>04</span>
+                    <i class="fa-solid fa-car"></i>
+                    <h3>Lave o carro racionalmente</h3>
+                    <p>Evite deixar a mangueira aberta continuamente.</p>
+                </div>
+
+                <div class="tip">
+                    <span>05</span>
+                    <i class="fa-solid fa-seedling"></i>
+                    <h3>Regue nos horários adequados</h3>
+                    <p>Evite horários de maior evaporação.</p>
+                </div>
+
+                <div class="tip">
+                    <span>06</span>
+                    <i class="fa-solid fa-tooth"></i>
+                    <h3>Feche a torneira ao escovar</h3>
+                    <p>Abra apenas quando realmente precisar.</p>
+                </div>
+
+                <div class="tip">
+                    <span>07</span>
+                    <i class="fa-solid fa-shirt"></i>
+                    <h3>Use a máquina cheia</h3>
+                    <p>Evite ciclos desnecessários.</p>
+                </div>
+
+                <div class="tip">
+                    <span>08</span>
+                    <i class="fa-solid fa-cloud-rain"></i>
+                    <h3>Capte chuva</h3>
+                    <p>Quando possível, aproveite a água da chuva.</p>
+                </div>
+
+                <div class="tip">
+                    <span>09</span>
+                    <i class="fa-solid fa-broom"></i>
+                    <h3>Evite mangueira</h3>
+                    <p>Prefira vassoura em calçadas e áreas externas.</p>
+                </div>
+
+                <div class="tip">
+                    <span>10</span>
+                    <i class="fa-solid fa-people-group"></i>
+                    <h3>Compartilhe conhecimento</h3>
+                    <p>Consciência também transforma hábitos.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= QUIZ ================= -->
+
+        <section class="quiz-section">
+
+            <div class="quiz-container">
+
+                <div class="section-title center light">
+
+                    <span class="eyebrow">
+                        DESAFIO FINAL
+                    </span>
+
+                    <h2>
+                        Você é um
+                        <span>Guardião da Água?</span>
+                    </h2>
+
+                    <p>
+                        Responda às perguntas e descubra quanto
+                        você aprendeu.
+                    </p>
+
+                </div>
+
+
+                <div class="quiz-box" id="quizBox">
+
+                    <div class="quiz-progress">
+
+                        <div class="progress-bar">
+                            <span id="quizProgress"></span>
+                        </div>
+
+                        <span id="questionNumber">
+                            1 / 5
+                        </span>
+
+                    </div>
+
+
+                    <h3 id="question">
+                        Qual destas atitudes ajuda diretamente
+                        a reduzir o desperdício?
+                    </h3>
+
+
+                    <div class="answers" id="answers">
+
+                        <button data-answer="0">
+                            Deixar a torneira aberta
+                        </button>
+
+                        <button data-answer="1">
+                            Reduzir o tempo de banho
+                        </button>
+
+                        <button data-answer="2">
+                            Lavar a calçada com mangueira
+                        </button>
+
+                        <button data-answer="3">
+                            Ignorar vazamentos
+                        </button>
+
+                    </div>
+
+
+                    <div class="quiz-feedback" id="quizFeedback"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CTA ================= -->
+
+        <section class="cta-section">
+
+            <div class="cta-water"></div>
+
+            <div class="cta-content">
+
+                <i class="fa-solid fa-droplet"></i>
+
+                <h2>
+                    Cada gota conta.
+                </h2>
+
+                <p>
+                    A mudança começa quando conhecimento
+                    vira atitude.
+                </p>
+
+                <a href="#inicio" class="btn btn-white">
+                    Voltar ao início
+                    <i class="fa-solid fa-arrow-up"></i>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+
+                <a href="#inicio" class="logo">
+
+                    <span class="logo-icon">
+                        <i class="fa-solid fa-droplet"></i>
+                    </span>
+
+                    <span>
+                        ÁGUA<span>+</span>
+                    </span>
+
+                </a>
+
+                <p>
+                    Ciência, consciência e futuro.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>Explorar</h4>
+
+                <a href="#consumo">Consumo</a>
+                <a href="#ciencia">Ciência</a>
+                <a href="#planeta">Planeta</a>
+                <a href="#reuso">Reúso</a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>Projeto</h4>
+
+                <a href="#sanepar">Visita à Sanepar</a>
+                <a href="#matematica">Dados</a>
+                <a href="#quimica">Química</a>
+                <a href="#biologia">Biologia</a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>Mensagem</h4>
+
+                <p>
+                    Preservar a água é preservar
+                    as possibilidades do futuro.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 Água em Equilíbrio
+            </span>
+
+            <span>
+                Projeto interdisciplinar • Maringá - PR
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script src="script.js"></script>
 
 </body>
 </html>
