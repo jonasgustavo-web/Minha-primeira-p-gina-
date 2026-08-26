@@ -1,617 +1,417 @@
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaSphere: HidroCiência Avançada & Sustentabilidade Global</title>
-    <!-- FontAwesome para Ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Chart.js para Gráficos Dinâmicos -->
+    <title>Uso Racional da Água: Ciência, Limites e Ação</title>
+    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary: #0284c7;
             --primary-dark: #0369a1;
-            --secondary: #0d9488;
-            --accent: #10b981;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --white: #ffffff;
-            --gray: #64748b;
-            --gray-light: #e2e8f0;
-            --danger: #ef4444;
-            --warning: #f59e0b;
+            --accent: #06b6d4;
+            --bg-light: #f0f9ff;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.7;
-        }
-
-        /* BARRA DE NAVEGAÇÃO */
-        header {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            color: var(--white);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 5%;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: -0.5px;
-        }
-
-        .logo span {
-            color: var(--white);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
         nav {
+            background: linear-gradient(135deg, #0f172a, #0284c7);
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             display: flex;
-            gap: 20px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
         }
 
         nav a {
-            color: var(--gray-light);
+            color: #e0f2fe;
             text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: color 0.3s;
+            font-weight: 500;
+            transition: color 0.2s;
         }
 
         nav a:hover {
-            color: var(--primary);
+            color: #38bdf8;
         }
 
-        /* HERO SECTION */
         .hero {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(2, 132, 199, 0.75)), url('https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(2, 132, 199, 0.75)), url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1200&q=80') center/cover;
+            color: white;
+            padding: 5rem 2rem;
             text-align: center;
-            color: var(--white);
-            padding: 8rem 2rem 4rem 2rem;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            max-width: 900px;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            line-height: 1.2;
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
         .hero p {
-            font-size: 1.25rem;
-            max-width: 750px;
-            margin-bottom: 2.5rem;
-            color: #cbd5e1;
-        }
-
-        .btn-hero {
-            background: var(--accent);
-            color: var(--white);
-            padding: 0.9rem 2.2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4);
-            transition: transform 0.3s, background 0.3s;
-        }
-
-        .btn-hero:hover {
-            background: #059669;
-            transform: translateY(-3px);
-        }
-
-        /* CONTEÚDO PRINCIPAL */
-        .main-container {
-            max-width: 1200px;
+            max-width: 700px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            font-size: 1.15rem;
+            color: #e0f2fe;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
         }
 
         section {
-            padding: 4rem 0;
-            border-bottom: 1px solid var(--gray-light);
-        }
-
-        section:last-of-type {
-            border-bottom: none;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-weight: 800;
-        }
-
-        .section-title i {
-            color: var(--primary);
-            background: rgba(2, 132, 199, 0.1);
-            padding: 12px;
+            background: var(--card-bg);
             border-radius: 12px;
-        }
-
-        .section-desc {
-            font-size: 1.1rem;
-            color: var(--gray);
+            padding: 2rem;
             margin-bottom: 2.5rem;
-            max-width: 800px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
         }
 
-        /* GRID DE CARDS */
+        section h2 {
+            color: var(--primary-dark);
+            margin-bottom: 1.2rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 0.3rem;
+        }
+
         .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .sanepar-box {
+            background: #e0f2fe;
+            border-left: 5px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin-top: 1rem;
+        }
+
+        .chart-container {
+            position: relative;
+            max-width: 100%;
+            height: 320px;
+            margin-top: 1rem;
+        }
+
+        .grid-2 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
 
-        .card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
-            border-top: 5px solid var(--primary);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
-        }
-
-        .card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-            font-weight: 700;
-        }
-
-        .card p {
-            color: var(--gray);
-            font-size: 0.98rem;
-        }
-
-        /* GRÁFICOS E PAINÉIS */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        @media (max-width: 900px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            nav {
-                display: none;
-            }
-        }
-
-        .chart-box {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
-        }
-
-        /* SANEPAR SECTION */
-        .sanepar-card {
-            background: linear-gradient(135deg, var(--white), #f0fdf4);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
-            border-left: 8px solid var(--accent);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .sanepar-card h3 {
-            color: #065f46;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .sanepar-badge {
-            display: inline-block;
-            background: #d1fae5;
-            color: #065f46;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .depoimento {
-            font-style: italic;
-            background: rgba(16, 185, 129, 0.08);
-            border-left: 4px solid var(--accent);
-            padding: 1.2rem;
-            margin: 1.5rem 0;
-            border-radius: 0 8px 8px 0;
-            color: #1e293b;
-        }
-
-        /* FERRAMENTAS INTERATIVAS (CALCULADORA E QUIZ) */
-        .tools-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-        }
-
-        @media (max-width: 850px) {
-            .tools-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .tool-box {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
-            border-top: 5px solid var(--secondary);
-        }
-
-        .tool-box h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .input-group {
-            margin-bottom: 1.2rem;
-        }
-
-        .input-group label {
+        label {
             display: block;
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            margin-top: 1rem;
+            color: var(--text-dark);
         }
 
-        .input-group input, .input-group select {
+        input[type="number"] {
             width: 100%;
-            padding: 0.8rem;
-            border: 2px solid var(--gray-light);
-            border-radius: 8px;
+            padding: 0.75rem;
+            margin-top: 0.4rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
             font-size: 1rem;
-            transition: border-color 0.3s;
         }
 
-        .input-group input:focus, .input-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .btn-action {
-            background: var(--primary);
-            color: var(--white);
+        button {
+            background-color: var(--primary);
+            color: white;
             border: none;
             padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 700;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            width: 100%;
-            transition: background 0.3s;
+            margin-top: 1.2rem;
+            transition: background 0.2s;
         }
 
-        .btn-action:hover {
-            background: var(--primary-dark);
+        button:hover {
+            background-color: var(--primary-dark);
         }
 
-        .result-display {
+        .calc-result {
             margin-top: 1.5rem;
             padding: 1rem;
-            background: #f1f5f9;
-            border-radius: 8px;
+            background: #dcfce7;
+            border-radius: 6px;
+            color: #166534;
             font-weight: 600;
-            text-align: center;
-            color: var(--dark);
+            display: none;
         }
 
-        /* QUIZ ESTILOS */
         .quiz-option {
-            background: var(--light);
-            border: 2px solid var(--gray-light);
-            padding: 0.9rem;
-            border-radius: 8px;
-            margin-bottom: 0.8rem;
+            display: block;
+            background: #f1f5f9;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 6px;
             cursor: pointer;
-            font-weight: 600;
-            text-align: left;
-            width: 100%;
-            transition: all 0.2s;
+            border: 1px solid #cbd5e1;
+            transition: background 0.2s;
         }
 
         .quiz-option:hover {
             background: #e2e8f0;
-            border-color: var(--secondary);
         }
 
-        /* RODAPÉ */
+        .quiz-option.correct {
+            background-color: #bbf7d0;
+            border-color: #22c55e;
+            color: #14532d;
+        }
+
+        .quiz-option.wrong {
+            background-color: #fecaca;
+            border-color: #ef4444;
+            color: #7f1d1d;
+        }
+
         footer {
-            background: var(--dark);
-            color: var(--white);
             text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
-        }
-
-        footer p {
+            padding: 2rem;
+            background: #0f172a;
             color: #94a3b8;
-            font-size: 0.95rem;
+            margin-top: 3rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVEGAÇÃO -->
-    <header>
-        <div class="logo">
-            <i class="fa-solid fa-water"></i> <span>AquaSphere</span>
-        </div>
-        <nav>
-            <a href="#biologia">Biologia</a>
-            <a href="#quimica">Química</a>
-            <a href="#matematica">Matemática & Limites</a>
-            <a href="#sanepar">Sanepar (Maringá)</a>
-            <a href="#ferramentas">Calculadora & Quiz</a>
-        </nav>
-    </header>
+    <nav>
+        <h1>💧 H2O Sustentável</h1>
+        <ul>
+            <li><a href="#ciencia">Ciência</a></li>
+            <li><a href="#sanepar">SANEPAR Maringá</a></li>
+            <li><a href="#graficos">Gráficos</a></li>
+            <li><a href="#calculadora">Calculadora</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+        </ul>
+    </nav>
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="inicio">
-        <h1>A Ciência Integral da Água e o Futuro do Planeta</h1>
-        <p>Uma imersão completa interligando Biologia Celular, Química Avançada, Análise Matemática e Sustentabilidade Global em prol do uso racional e reuso hídrico.</p>
-        <a href="#ferramentas" class="btn-hero">Acessar Calculadora & Quiz</a>
-    </section>
+    <div class="hero">
+        <h2>Uso Racional da Água & Limites Planetários</h2>
+        <p>Integração interdisciplinar entre Química, Biologia e Matemática para a conservação dos recursos hídricos.</p>
+    </div>
 
-    <!-- CONTAINER GLOBAL -->
-    <div class="main-container">
+    <div class="container">
 
-        <!-- 1. BIOLOGIA -->
-        <section id="biologia">
-            <h2 class="section-title"><i class="fa-solid fa-dna"></i> Biologia: Metabolismo, Homeostase e Ecossistemas</h2>
-            <p class="section-desc">A água é o solvente da vida. Compreenda como os seres vivos dependem de complexas redes hídricas e os impactos das perturbações antrópicas.</p>
-            
+        <!-- CIÊNCIA INTERDISCIPLINAR -->
+        <section id="ciencia">
+            <h2>A Ciência da Água</h2>
             <div class="grid-3">
                 <div class="card">
-                    <h3>Homeostase e Termorregulação</h3>
-                    <p>A molécula de água possui alto calor específico, absorvendo grandes variações térmicas sem alterar bruscamente sua temperatura interna. Nos animais, o suor utiliza o calor latente de evaporação para resfriamento corporal, mantendo o equilíbrio osmótico e metabólico celular.</p>
+                    <h3>🧪 Química</h3>
+                    <p>Com sua estrutura polar e ligações de hidrogênio, a água atua como solvente universal. No tratamento, coagulantes como o sulfato de alumínio neutralizam cargas para agregar impurezas, seguidos pela desinfecção com cloro.</p>
                 </div>
                 <div class="card">
-                    <h3>Ciclos Biogeoquímicos</h3>
-                    <p>O ciclo hidrológico interliga a atmosfera, litosfera e biosfera. A evapotranspiração vegetal injeta vapor de água na atmosfera, alimentando os ventos úmidos essenciais para a fertilidade dos solos e recarga de aquíferos subterrâneos vitais.</p>
+                    <h3>🌿 Biologia</h3>
+                    <p>Indispensável para o equilíbrio celular e fotossíntese. A superexploração de mananciais causa desequilíbrios ecológicos, reduz a biodiversidade aquática e compromete os ciclos biogeoquímicos locais.</p>
                 </div>
                 <div class="card">
-                    <h3>Eutrofização e Poluição</h3>
-                    <p>O despejo inadequado de esgoto rico em fosfatos e nitratos gera proliferação massiva de cianobactérias e algas. O bloqueio da luz solar e a posterior decomposição bacteriana esgotam o oxigênio dissolvido, colapsando ecossistemas aquáticos inteiros.</p>
+                    <h3>📊 Matemática & Limites</h3>
+                    <p>Segundo o modelo de Limites Planetários (Stockholm Resilience Centre), o uso global de água doce verde e azul está na zona de risco. Cálculos estatísticos mostram como pequenas reduções multiplicam-se em escala urbana.</p>
                 </div>
             </div>
         </section>
 
-        <!-- 2. QUÍMICA -->
-        <section id="quimica">
-            <h2 class="section-title"><i class="fa-solid fa-flask"></i> Química: Estrutura Molecular, Poluição e Tratamento</h2>
-            <p class="section-desc">Da polaridade molecular aos rigorosos processos físico-químicos aplicados nas estações de tratamento para potabilidade e reaproveitamento.</p>
-            
-            <div class="grid-3">
-                <div class="card">
-                    <h3>Pontes de Hidrogênio & Polaridade</h3>
-                    <p>A geometria angular da molécula de H₂O e a alta eletronegatividade do oxigênio criam dipolos elétricos. As ligações de hidrogênio conferem à água propriedades anômalas únicas, como densidade máxima a 4°C e forte atração intermolecular.</p>
-                </div>
-                <div class="card">
-                    <h3>Coagulação e Floculação</h3>
-                    <p>Nas estações de tratamento, adicionam-se sais coagulantes (como sulfato de alumínio). Íons metálicos neutralizam cargas de colóides suspensos, aglutinando impurezas em flocos pesados que sedimentam na decantação.</p>
-                </div>
-                <div class="card">
-                    <h3>Desinfecção e Tecnologias de Reuso</h3>
-                    <p>A cloração e ozonização oxidam paredes celulares de patógenos. Para o reúso de águas cinzas, utilizam-se membranas de ultrafiltração e osmose reversa, retendo compostos orgânicos dissolvidos e micro-poluentes hormonais.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. MATEMÁTICA E LIMITES PLANETÁRIOS -->
-        <section id="matematica">
-            <h2 class="section-title"><i class="fa-solid fa-chart-pie"></i> Matemática & Limites Planetários</h2>
-            <p class="section-desc">Modelagem estatística, pegada hídrica e os limites biofísicos globais que definem a sobrevivência sustentável das futuras gerações.</p>
-            
-            <div class="dashboard-grid">
-                <div>
-                    <h3 style="margin-bottom: 1rem; color: var(--dark);">Distribuição Hídrica do Planeta</h3>
-                    <p style="color: var(--gray); margin-bottom: 1.5rem;">Matematicamente, menos de 3% de toda a água da Terra é doce, sendo que a maior parte está aprisionada em calotas polares. A parcela acessível em rios e lagos representa um volume extremamente escasso e vulnerável.</p>
-                    <ul style="list-style: none; padding-left: 0; color: var(--dark); font-weight: 600;">
-                        <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-circle" style="color: #0284c7; font-size: 0.7rem;"></i> Água Salgada (Oceanos): 97.5%</li>
-                        <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-circle" style="color: #38bdf8; font-size: 0.7rem;"></i> Geleiras e Gelo Polar: 2.47%</li>
-                        <li><i class="fa-solid fa-circle" style="color: #10b981; font-size: 0.7rem;"></i> Água Doce Disponível: 0.03%</li>
-                    </ul>
-                </div>
-                <div class="chart-box">
-                    <canvas id="graficoPlaneta"></canvas>
-                </div>
-            </div>
-
-            <div class="grid-3" style="margin-top: 3rem;">
-                <div class="card">
-                    <h3>Limites Planetários (Stockholm Resilience)</h3>
-                    <p>O uso global de água doce cruzou zonas de segurança ambiental devido à agricultura intensiva e represamentos excessivos, ameaçando a estabilidade do sistema terrestre.</p>
-                </div>
-                <div class="card">
-                    <h3>Pegada Hídrica Invisível</h3>
-                    <p>Matemática do consumo oculto: para produzir 1 kg de carne bovina consome-se cerca de 15.000 litros de água; para uma calça jeans, aproximadamente 10.000 litros.</p>
-                </div>
-                <div class="card">
-                    <h3>Projeções Demográficas</h3>
-                    <p>Cálculos preditivos indicam que, mantendo o ritmo atual de desperdício, mais de metade da população mundial enfrentará escassez hídrica crônica até 2050.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. VISITA TÉCNICA SANEPAR - MARINGÁ -->
+        <!-- VISITA SANEPAR MARINGÁ -->
         <section id="sanepar">
-            <div class="sanepar-card">
-                <span class="sanepar-badge"><i class="fa-solid fa-location-dot"></i> Relato de Campo • Maringá - PR</span>
-                <h3>Visita Técnica à Estação de Tratamento da Sanepar</h3>
-                <p>Nossa equipe realizou uma visita inesquecível à <strong>Estação de Tratamento de Água (ETA) e Esgoto da Sanepar em Maringá - PR</strong>. Pudemos constatar a grandiosidade da engenharia sanitária que capta e trata as águas do Rio Pirapó com rigor tecnológico de ponta.</p>
-                
-                <div class="depoimento">
-                    "Ver de perto o laboratório de controle físico-químico da Sanepar nos deu a real dimensão de que cada litro de água potável que sai das torneiras em Maringá exige precisão milimétrica em testes de turbidez, pH e dosagem de cloro."
-                </div>
-
-                <p>A companhia também apresentou projetos inovadores de desinfecção avançada, recuperação de rios urbanos e campanhas voltadas ao reaproveitamento de efluentes tratados na irrigação de parques e limpezas industriais na "Cidade Canção".</p>
+            <h2>Estudo de Caso: Visita Técnica à SANEPAR (Maringá - PR)</h2>
+            <div class="sanepar-box">
+                <h3>📍 Estação de Tratamento de Água (ETA)</h3>
+                <p>Durante a visita técnica às instalações da SANEPAR em Maringá, acompanhamos o percurso da água captada no Rio Pirapó e Ribeirão Maringá. Observamos na prática as fases de floculação, decantação, filtração e cloração, além da medição constante de turbidez. A experiência evidencia o custo energético e químico envolvido na purificação, tornando o reaproveitamento e o uso racional indispensáveis.</p>
             </div>
         </section>
 
-        <!-- 5. FERRAMENTAS INTERATIVAS (CALCULADORA E QUIZ) -->
-        <section id="ferramentas">
-            <h2 class="section-title"><i class="fa-solid fa-calculator"></i> Ferramentas Práticas & Quiz Científico</h2>
-            <p class="section-desc">Teste seus conhecimentos biológicos/químicos e calcule o impacto do seu consumo diário de água.</p>
-
-            <div class="tools-container">
-                <!-- CALCULADORA -->
-                <div class="tool-box">
-                    <h3><i class="fa-solid fa-droplet" style="color: var(--primary);"></i> Calculadora de Consumo</h3>
-                    <div class="input-group">
-                        <label for="tempoBanho">Tempo médio de banho (minutos):</label>
-                        <input type="number" id="tempoBanho" min="1" max="60" value="10">
+        <!-- GRÁFICOS INTERATIVOS -->
+        <section id="graficos">
+            <h2>Análise de Dados com Gráficos</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>Consumo Médio por Atividade (Litros)</h3>
+                    <div class="chart-container">
+                        <canvas id="chartConsumo"></canvas>
                     </div>
-                    <div class="input-group">
-                        <label for="tipoChuveiro">Tipo de Chuveiro:</label>
-                        <select id="tipoChuveiro">
-                            <option value="9">Elétrico Convencional (~9 L/min)</option>
-                            <option value="15">A gas / Alta Vazão (~15 L/min)</option>
-                            <option value="6">Econômico / Arejado (~6 L/min)</option>
-                        </select>
-                    </div>
-                    <button class="btn-action" onclick="calcularConsumo()">Calcular Gasto Diário</button>
-                    <div id="resultadoCalculadora" class="result-display">Insira seus dados acima para ver o cálculo.</div>
                 </div>
-
-                <!-- QUIZ -->
-                <div class="tool-box">
-                    <h3><i class="fa-solid fa-brain" style="color: var(--secondary);"></i> Quiz Interativo</h3>
-                    <p id="perguntaTexto" style="font-weight: 700; margin-bottom: 1rem; color: var(--dark);">1. Qual fenômeno biológico e químico causa a morte massiva de peixes devido à falta de oxigênio em lagos poluídos por fertilizantes?</p>
-                    <div id="opcoesQuiz">
-                        <button class="quiz-option" onclick="verificarQuiz(false)">A) Cloração Avançada</button>
-                        <button class="quiz-option" onclick="verificarQuiz(true)">B) Eutrofização</button>
-                        <button class="quiz-option" onclick="verificarQuiz(false)">C) Osmose Reversa</button>
+                <div>
+                    <h3>Distribuição Global do Uso de Água Doce</h3>
+                    <div class="chart-container">
+                        <canvas id="chartGlobal"></canvas>
                     </div>
-                    <div id="resultadoQuiz" class="result-display">Escolha uma alternativa.</div>
                 </div>
             </div>
+        </section>
+
+        <!-- CALCULADORA DE ECONOMIA E REAPROVEITAMENTO -->
+        <section id="calculadora">
+            <h2>Calculadora de Impacto e Reaproveitamento</h2>
+            <p>Calcule seu consumo diário estimado e veja a economia ao reaproveitar a água da máquina de lavar roupas em casa.</p>
+
+            <form id="waterForm" onsubmit="event.preventDefault(); calcularConsumo();">
+                <label for="banho">Tempo médio de banho (minutos/dia):</label>
+                <input type="number" id="banho" value="10" min="1" required>
+
+                <label for="escovacao">Torneira aberta na escovação (minutos/dia):</label>
+                <input type="number" id="escovacao" value="3" min="0" required>
+
+                <label for="reuso">Ciclos de máquina de lavar reaproveitados/semana:</label>
+                <input type="number" id="reuso" value="2" min="0" required>
+
+                <button type="submit">Calcular Economia Potencial</button>
+            </form>
+
+            <div id="result" class="calc-result"></div>
+        </section>
+
+        <!-- QUIZ INTERATIVO -->
+        <section id="quiz">
+            <h2>Quiz Interativo: Teste seus Conhecimentos</h2>
+            <div id="quiz-container">
+                <div class="question-block" id="q1">
+                    <p><strong>1. Qual reagente é amplamente usado na coagulação no tratamento de água?</strong></p>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 1)">Sulfato de Alumínio</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 1)">Cloreto de Sódio</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 1)">Bicarbonato de Sódio</div>
+                </div>
+                <br>
+                <div class="question-block" id="q2">
+                    <p><strong>2. Qual setor consome o maior percentual de água doce mundialmente?</strong></p>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 2)">Uso Doméstico</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 2)">Agricultura / Irrigação</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 2)">Indústria</div>
+                </div>
+            </div>
+            <div id="quiz-score" style="margin-top: 1rem; font-weight: bold; color: var(--primary-dark);"></div>
         </section>
 
     </div>
 
-    <!-- RODAPÉ -->
     <footer>
-        <p>&copy; 2026 AquaSphere. Projeto Multidisciplinar Educativo (Biologia, Química e Matemática) para o GitHub.</p>
+        <p>Projeto Sustentabilidade & Água | Maringá-PR &copy; 2026</p>
     </footer>
 
-    <!-- SCRIPTS INTEGRADOS -->
     <script>
-        // GRÁFICO CHART.JS
-        const ctx = document.getElementById('graficoPlaneta').getContext('2d');
-        const graficoPlaneta = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Água Salgada (97.5%)', 'Geleiras (2.47%)', 'Água Doce Disponível (0.03%)'],
-                datasets: [{
-                    data: [97.5, 2.47, 0.03],
-                    backgroundColor: ['#0284c7', '#38bdf8', '#10b981'],
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            font: {
-                                size: 12,
-                                family: 'Segoe UI'
-                            }
-                        }
-                    }
-                }
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx1 = document.getElementById('chartConsumo').getContext('2d');
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['Banho (15 min)', 'Descarga', 'Torneira aberta', 'Lavagem de Louça'],
+                    datasets: [{
+                        label: 'Litros consumidos',
+                        data: [135, 40, 36, 60],
+                        backgroundColor: ['#0284c7', '#06b6d4', '#38bdf8', '#0284c7']
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            const ctx2 = document.getElementById('chartGlobal').getContext('2d');
+            new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Agricultura (70%)', 'Indústria (19%)', 'Uso Doméstico (11%)'],
+                    datasets: [{
+                        data: [70, 19, 11],
+                        backgroundColor: ['#0284c7', '#06b6d4', '#93c5fd']
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
         });
 
-        // CALCULADORA DE CONSUMO
         function calcularConsumo() {
-            const tempo = parseFloat(document.getElementById('tempoBanho').value);
-            const vazao = parseFloat(document.getElementById('tipoChuveiro').value);
-            const display = document.getElementById('resultadoCalculadora');
+            const banhoMin = parseFloat(document.getElementById('banho').value) || 0;
+            const escovacaoMin = parseFloat(document.getElementById('escovacao').value) || 0;
+            const reusoSemana = parseFloat(document.getElementById('reuso').value) || 0;
 
-            if(isNaN(tempo) || tempo <= 0) {
-                display.innerHTML = "Por favor, insira um tempo válido.";
-                display.style.color = "var(--danger)";
-                return;
-            }
+            const consumoDiario = (banhoMin * 9) + (escovacaoMin * 12);
+            const economiaReusoMensal = reusoSemana * 100 * 4;
 
-            const totalLitros = tempo * vazao;
-            const economiaEconomica = (vazao > 6) ? (tempo * (vazao - 6)) : 0;
-
-            display.innerHTML = `Seu banho gasta aprox. <strong>${totalLitros} litros</strong> de água. <br>` + 
-                (economiaEconomica > 0 ? `💡 Dica matemática: Trocando por um chuveiro econômico, você economizaria <strong>${economiaEconomica} litros</strong> por banho!` : `Excelente! Seu chuveiro já é super econômico.`);
-            display.style.color = "var(--secondary)";
+            const resDiv = document.getElementById('result');
+            resDiv.style.display = 'block';
+            resDiv.innerHTML = `
+                📌 <strong>Resultado do Seu Consumo:</strong><br>
+                • Consumo diário individual estimado: <strong>${consumoDiario.toFixed(1)} Litros/dia</strong>.<br>
+                • Economia estimada com reaproveitamento da máquina de lavar: <strong>${economiaReusoMensal} Litros/mês</strong>!<br>
+                💡 <em>Dica: Reduzir o banho para 5 minutos economiza até 45 litros por dia.</em>
+            `;
         }
 
-        // QUIZ INTERATIVO
-        let quizRespondido = false;
-        function verificarQuiz(correto) {
-            const displayQuiz = document.getElementById('resultadoQuiz');
-            if(correto) {
-                displayQuiz.innerHTML = "✅ Resposta Correta! A eutrofização prolifera algas que consomem todo o oxigênio dissolvido da água.";
-                displayQuiz.style.color = "var(--accent)";
+        let score = 0;
+        let answered = { 1: false, 2: false };
+
+        function checkAnswer(element, isCorrect, questionNum) {
+            if (answered[questionNum]) return;
+            answered[questionNum] = true;
+
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+
+            if (isCorrect) {
+                element.classList.add('correct');
+                score++;
             } else {
-                displayQuiz.innerHTML = "❌ Incorreto. A resposta certa é a Eutrofização.";
-                displayQuiz.style.color = "var(--danger)";
+                element.classList.add('wrong');
             }
+
+            document.getElementById('quiz-score').innerText = `Pontuação final: ${score} / 2 acertos.`;
         }
     </script>
 </body>
 </html>
-"""
-
-with open("index.html", "w", encoding="utf-8") as f:
-    f.write(html_content)
-
-print("Arquivo index.html gerado com sucesso!")
